@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+
+RewriteEngine On
+
+RewriteRule ^register$ index.php?page=register [L]
+RewriteRule ^forgot-password$ index.php?page=forgot-password [L]

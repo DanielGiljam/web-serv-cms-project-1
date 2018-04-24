@@ -6,10 +6,27 @@
 # determining what to generate based on the app state information
 # provided by the AppStateCentral -object.
 
-?>
+$page_specific_properties = $app_state_central->getPageSpecificProperties();
 
-        <main>
+switch ($page_specific_properties[0]) {
 
-            <p>Here is some example page content for the page <?php echo $app_state_central->page_title ?>.</p>
+    case 'person':
 
-        </main>
+        include 'pages/person.php';
+        break;
+
+    case 'register':
+
+        include 'pages/register.php';
+        break;
+
+    case 'forgot-password':
+
+        include 'pages/forgot-password.php';
+        break;
+
+    default:
+
+        include 'pages/feed.php';
+        break;
+}
