@@ -5,7 +5,7 @@
 # This page serves the appropriate UI to the user of the web-serv-cms-project-1 web application
 # based on the context / the current state of the web application.
 
-include 'url_cleanup.php';
+include 'url-cleanup.php';
 
 include 'app-state-central.php';
 $app_state_central = new AppStateCentral;

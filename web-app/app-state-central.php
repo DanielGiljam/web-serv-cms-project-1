@@ -55,6 +55,9 @@ class AppStateCentral {
                         break;
 
                 }
+            } else {
+                $this->page_specific_properties[0] = 'feed';
+                $this->setUnspecifiedPageProperties();
             }
         }
 
@@ -84,22 +87,25 @@ class AppStateCentral {
                 // TODO: if "name" value isn't set but client is logged in, then client is redirected to the client's own person -page
             } else {
                 // TODO: if "name" value isn't set and client isn't logged in, then client is redirected to the home page
+                $this->page_specific_properties['name'] = 'Julle';
+                $this->page_title = $this->page_specific_properties['name'] . ' | ' . $this->page_title;
             }
 
             // all person page property "sets" within following if -statement are exclusive to logged in clients
             if ($this->client_id !== '0') {
                 $this->page_specific_properties['your_page'] = $this->matchNameWithId();
-            }
 
-            // all person page property "sets" within following if -statement are exclusive to logged in clients
-            // visiting their own person -page
-            if ($this->page_specific_properties['your_page'] === true) {
-                // if the GET key "settings" has the value "shown", then the "show settings" property is set to "true"
-                // if the value is something else or the key doesn't exist, then the property is set to "false"
-                if (isset($_GET['settings'])) {
-                    if ($_GET['settings'] === 'shown') $this->page_specific_properties['show_settings'] = true;
-                } else {
-                    $this->page_specific_properties['show_settings'] = false;
+                // all person page property "sets" within following if -statement are exclusive to logged in clients
+                // visiting their own person -page
+                if ($this->page_specific_properties['your_page'] === true) {
+
+                    // if the GET key "settings" has the value "shown", then the "show settings" property is set to "true"
+                    // if the value is something else or the key doesn't exist, then the property is set to "false"
+                    if (isset($_GET['settings'])) {
+                        if ($_GET['settings'] === 'shown') $this->page_specific_properties['show_settings'] = true;
+                    } else {
+                        $this->page_specific_properties['show_settings'] = false;
+                    }
                 }
             }
 
@@ -109,6 +115,11 @@ class AppStateCentral {
         private function setFeedPageProperties()
         {
             // TODO: feed page property "sets" come here...
+        }
+
+        private function setUnspecifiedPageProperties()
+        {
+            // TODO: unspecified page property "sets" come here...
         }
 
     // utility functions (tasks) and procedures

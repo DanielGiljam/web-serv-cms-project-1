@@ -5,7 +5,7 @@
 # Procedurally generates a person page, determining how to generate it
 # based on the app state information provided by the AppStateCentral -object.
 
-if ($page_specific_properties['no_such_user']) {
+if (isset($page_specific_properties['no_such_user']) && $page_specific_properties['no_such_user']) {
 
 ?>
 

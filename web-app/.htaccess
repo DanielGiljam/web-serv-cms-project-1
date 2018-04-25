@@ -1,6 +1,6 @@
-Options +FollowSymLinks
-
 RewriteEngine On
 
-RewriteRule ^register$ index.php?page=register [L]
-RewriteRule ^forgot-password$ index.php?page=forgot-password [L]
+RewriteRule ^register$ index.php?page=register
+RewriteRule ^forgot-password$ index.php?page=forgot-password
+RewriteRule ^person$ index.php?page=person
+RewriteRule ^person/([a-z-]+)$ index.php?page=person&name=$1
