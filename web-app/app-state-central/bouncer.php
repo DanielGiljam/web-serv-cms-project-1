@@ -2,7 +2,7 @@
 
 # BOUNCER
 #
-# This file is like the bouncer of this site if this site was a bar/nightclub.
+# This file is the bouncer of this site if this site was a bar/nightclub.
 # It provides functionality for checking if the client is logged in or not (who the client is)
 # and for logging out the client.
 
