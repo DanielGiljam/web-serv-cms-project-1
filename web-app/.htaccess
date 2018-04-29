@@ -1,5 +1,6 @@
 RewriteEngine On
 
+# TODO: actually write the .htaccess - these lines are just for demonstrational purposes
 RewriteRule ^register$ index.php?page=register
 RewriteRule ^forgot-password$ index.php?page=forgot-password
 RewriteRule ^person$ index.php?page=person

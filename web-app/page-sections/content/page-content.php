@@ -6,6 +6,14 @@
 # determining what to generate based on the app state information
 # provided by the AppStateCentral -object.
 
+?>
+
+<main>
+
+    <div class="container">
+
+<?php
+
 $page_specific_properties = $app_state_central->getPageSpecificProperties();
 
 switch ($page_specific_properties[0]) {
@@ -30,3 +38,9 @@ switch ($page_specific_properties[0]) {
         include 'pages/feed.php';
         break;
 }
+
+?>
+
+    </div>
+
+</main>

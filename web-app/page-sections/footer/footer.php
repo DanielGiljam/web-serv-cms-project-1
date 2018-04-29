@@ -6,11 +6,17 @@
 
 ?>
 
-        <footer>
+            <footer>
 
-            <span>This is a footer.</span>
+                <div class="container">
 
-        </footer>
+                    <span>This is a footer.</span>
+
+                </div>
+
+            </footer>
+
+        </div>
 
     </body>
 

@@ -1,0 +1,38 @@
+/* Global change of box-sizing behaviour
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+*/
+
+/* Macro element formatting */
+body {
+    margin: 0;
+}
+#main-container {
+    margin: 0 auto;
+    max-width: 64rem;
+}
+#main-container > * {
+    width: auto;
+    padding: 1rem;
+}
+header {
+}
+header::after {
+    position: fixed;
+}
+main {
+    min-height: 8rem;
+}
+footer {
+    min-height: 2rem;
+}
+
+/* User agent stylesheet overrides */
+h1, p {
+    margin-top: 0;
+    margin-bottom: 0;
+}

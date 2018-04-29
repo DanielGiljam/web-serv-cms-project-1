@@ -16,18 +16,26 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen, projection" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $app_state_central->getThemeHref() ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/print.css" media="print" />
+        <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/style.css" media="screen, projection" />
+        <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() . $app_state_central->getThemeHref() ?>" />
 
-        <script src="scripts/script.js" type="text/javascript"></script>
+        <?php echo $app_state_central->getScriptTags() ?>
+
+
 
     </head>
 
     <body>
 
-        <header>
+        <div id="main-container">
 
-            <h1><?php echo $app_state_central->getPageTitle() ?></h1>
+            <header>
 
-        </header>
+                <div class="container">
+
+                    <h1><?php echo $app_state_central->getPageTitle() ?></h1>
+
+                </div>
+
+            </header>

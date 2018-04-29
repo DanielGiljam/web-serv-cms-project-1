@@ -11,7 +11,8 @@ class AppStateCentral {
 
     private $client_id = '0';
     private $page_title = 'Dating Site';
-    private $theme_href = 'css/theme.css';
+    private $theme_href = '/css/theme.css';
+    private $script_tags = ''; // TODO: setScriptTags() -function!
 
     private $page_specific_properties = [];
 
@@ -153,6 +154,11 @@ class AppStateCentral {
         public function getThemeHref()
         {
             return $this->theme_href;
+        }
+
+        public function getScriptTags()
+        {
+            return $this->script_tags;
         }
 
         public function getPageSpecificProperties()

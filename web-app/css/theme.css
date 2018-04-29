@@ -1,0 +1,13 @@
+body {
+    background-color: gray;
+    font-family: sans-serif;
+}
+header {
+    background-color: lightcoral;
+}
+main {
+    background-color: white;
+}
+footer {
+    background-color: lightcoral;
+}
