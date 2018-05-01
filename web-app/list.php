@@ -27,7 +27,7 @@ $subject_set = find_all_db_objects();
                 <tr>
                     <td><?php echo h($subject['namn']); ?></td>
                     <td><?php echo h($subject['postnummer']); ?></td>
-                    <td><a class="action" href="<?php echo url_for('/Project-1.1/show.php?namn=' . h(u($subject['namn'])));?>">View</a></td>
+                    <td><a class="action" href="<?php echo 'show.php?namn=' . h(u($subject['namn'])); ?>">View</a></td>
                 </tr>
             <?php } ?>
         </table>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('db_credentials.php');
+require('db_credentials.php');
 
 function db_connect(){
 
