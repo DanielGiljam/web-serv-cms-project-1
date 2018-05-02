@@ -1,6 +1,8 @@
 <?php
 
-// TODO: comment this file
+# PERSON
+#
+# This object represents a person.
 
 include 'person-property.abstract.php';
 
@@ -18,14 +20,14 @@ class Person {
     private function __CONSTRUCT($id)
     {
         $person_data = getPerson($id);
-        $this->id = new Id($person_data[0]['id']);
-        $this->name = new Name($person_data[0]['name']);
-        $this->name_url_encoded = new NameUrlEncoded($person_data[0]['name_url_encoded']);
-        $this->email = new Email($person_data[0]['email']);
-        $this->zip_code = new ZipCode($person_data[0]['zip_code']);
-        $this->about_you = new AboutYou($person_data[0]['about_you']);
-        $this->annual_salary = new AnnualSalary($person_data[0]['annual_salary']);
-        $this->dating_preference = new DatingPreference($person_data[0]['dating_preference']);
+        $this->id = new Id($person_data['id']);
+        $this->name = new Name($person_data['name']);
+        $this->name_url_encoded = new NameUrlEncoded($person_data['name_url_encoded']);
+        $this->email = new Email($person_data['email']);
+        $this->zip_code = new ZipCode($person_data['zip_code']);
+        $this->about_you = new AboutYou($person_data['about_you']);
+        $this->annual_salary = new AnnualSalary($person_data['annual_salary']);
+        $this->dating_preference = new DatingPreference($person_data['dating_preference']);
     }
 
     public static function getPerson(PersonProperty $property)
@@ -38,7 +40,6 @@ class Person {
                 return false;
             case 'name_url_encoded':
                 $id = self::getId($property->value());
-                var_dump($id);
                 break;
             case 'email':
                 return false;
@@ -53,12 +54,13 @@ class Person {
             default:
                 return false;
         }
-        return new Person($id);
+        if (!isset($id)) return false;
+        else return new Person($id);
     }
 
     public static function getId($name_url_encoded)
     {
-        return getIdWithNameUrlEncoded($name_url_encoded)[0]['id']; // TODO: make this function return a real value
+        return getIdWithNameUrlEncoded($name_url_encoded)['id']; // TODO: make this function return a real value
     }
 
     public static function getUrlEncodedName($id)

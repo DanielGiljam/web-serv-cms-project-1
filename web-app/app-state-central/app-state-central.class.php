@@ -6,7 +6,7 @@
 # and parsed from the HTTP header at the creation of this object.
 
 include 'bouncer.php';
-include 'vault/vault.php';
+include 'vault/vault.class.php';
 include 'person/person.class.php';
 
 class AppStateCentral {
@@ -80,7 +80,7 @@ class AppStateCentral {
                 if ($this->userExists()) {
                     // format "name" value and set the page title property accordingly
                     $this->page_specific_properties['url_name'] = $_GET['name'];
-                    $this->page_title = $this->page_specific_properties['person']->get('name') . ' | ' . $this->page_title;
+                    $this->page_title = $this->page_specific_properties['person']->get('name')->value() . ' | ' . $this->page_title;
                 } else {
                     // if "name" value doesn't match an existing person/user,
                     // then following fallback flag is set

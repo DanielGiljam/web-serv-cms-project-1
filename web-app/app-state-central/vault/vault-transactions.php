@@ -7,43 +7,63 @@
 
 include 'vault-transaction-setups.php';
 
+$person_executable = null;
+
 function getPerson($id)
 {
-    while (!isset($person_executable)) setUpGetPerson();
-    $person_executable->execute([':id' => $id]);
-    return $person_executable->fetchAll();
+    if (!isset($person_executable)) {
+        return setUpGetPerson($id);
+    } else {
+        $person_executable->execute([':id' => $id]);
+        return $person_executable->fetch();
+    }
+
 }
+
+$id_executable = null;
 
 function getIdWithNameUrlEncoded($name_url_encoded)
 {
-    while (!isset($id_executable)) setUpGetIdWithNameUrlEncoded();
-    $id_executable->execute([':name_url_encoded' => $name_url_encoded]);
-    return $id_executable->fetchAll();
+    if (!isset($id_executable)) {
+        return setUpGetIdWithNameUrlEncoded($name_url_encoded);
+    } else {
+        $id_executable->execute([':name_url_encoded' => $name_url_encoded]);
+        return $id_executable->fetch();
+    }
 }
+
+$name_with_id_executable = null;
 
 function getNameWithId($id)
 {
-    $db_request = "SELECT 'name' FROM 'users_main' WHERE 'id'=?";
-    global $name_with_id_executable;
-    if (!isset($name_with_id_executable)) $name_with_id_executable = Vault::getConnection()->prepare($db_request);
-    $name_with_id_executable->execute(array($id));
-    return $name_with_id_executable->fetchAll();
+    if (!isset($name_with_id_executable)) {
+        return setUpGetNameWithId($id);
+    } else {
+        $name_with_id_executable->execute([':id' => $id]);
+        return $name_with_id_executable->fetch();
+    }
 }
+
+$name_with_name_url_encoded_executable = null;
 
 function getNameWithNameUrlEncoded($name_url_encoded)
 {
-    $db_request = "SELECT 'name' FROM 'users_main' WHERE 'name_url_encoded'=?";
-    global $name_with_name_url_encoded_executable;
-    if (!isset($name_with_name_url_encoded_executable)) $name_with_name_url_encoded_executable = Vault::getConnection()->prepare($db_request);
-    $name_with_name_url_encoded_executable->execute(array($name_url_encoded));
-    return $name_with_name_url_encoded_executable->fetchAll();
+    if (!isset($name_with_name_url_encoded_executable)) {
+        return setUpGetNameWithNameUrlEncoded($name_url_encoded);
+    } else {
+        $name_with_name_url_encoded_executable->execute([':name_url_encoded' => $name_url_encoded]);
+        return $name_with_name_url_encoded_executable->fetch();
+    }
 }
+
+$name_url_encoded_executable = null;
 
 function getNameUrlEncodedWithId($id)
 {
-    $db_request = "SELECT 'name_url_encoded' FROM 'users_main' WHERE 'id'=?";
-    global $name_url_encoded_executable;
-    if (!isset($name_url_encoded_executable)) $name_url_encoded_executable = Vault::getConnection()->prepare($db_request);
-    $name_url_encoded_executable->execute(array($id));
-    return $name_url_encoded_executable->fetchAll();
+    if (!isset($name_url_encoded_executable)) {
+        return setUpGetNameUrlEncodedWithId($id);
+    } else {
+        $name_url_encoded_executable->execute([':id' => $id]);
+        return $name_url_encoded_executable->fetch();
+    }
 }
