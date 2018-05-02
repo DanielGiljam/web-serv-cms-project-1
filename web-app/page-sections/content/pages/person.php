@@ -9,7 +9,7 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
 
 ?>
 
-<p><?php echo $page_specific_properties['name'] ?> is not a registered user on this site.</p>
+<p>Your requested user does not exist on this site.</p>
 
 <?php
 
@@ -17,7 +17,7 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
 
 ?>
 
-<p>This is <?php echo $page_specific_properties['name'] ?>'s page.</p>
+<p>This is <?php echo $page_specific_properties['person']->get('name')?>'s page.</p>
 
 <?php
 

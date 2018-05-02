@@ -7,7 +7,7 @@
 // This one's return value may change until the site is settled on its final platform
 function getContextRoot()
 {
-    return '/web-serv-cms-project-1/';
+    return '/daniels-path/web-serv-cms-project-1/';
 }
 
 function initialize() 
@@ -18,6 +18,7 @@ function initialize()
 
 function release() 
 {
+    Vault::closeConnection();
     ob_end_flush();
     die();
 }

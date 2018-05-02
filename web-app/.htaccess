@@ -3,5 +3,5 @@ RewriteEngine On
 # TODO: actually write the .htaccess - these lines are just for demonstrational purposes
 RewriteRule ^register$ index.php?page=register
 RewriteRule ^forgot-password$ index.php?page=forgot-password
-RewriteRule ^person$ index.php?page=person
+RewriteRule ^person/?$ index.php?page=person
 RewriteRule ^person/([a-z-]+)$ index.php?page=person&name=$1

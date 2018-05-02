@@ -6,6 +6,8 @@
 # and parsed from the HTTP header at the creation of this object.
 
 include 'bouncer.php';
+include 'vault/vault.php';
+include 'person/person.class.php';
 
 class AppStateCentral {
 
@@ -75,21 +77,19 @@ class AppStateCentral {
             // check that its value matches an existing person/user,
             // else provide fallback options
             if (isset($_GET['name'])) {
-                $this->page_specific_properties['name'] = $_GET['name'];
                 if ($this->userExists()) {
                     // format "name" value and set the page title property accordingly
-                    $this->page_title = $this->page_specific_properties['name'] . ' | ' . $this->page_title;
+                    $this->page_specific_properties['url_name'] = $_GET['name'];
+                    $this->page_title = $this->page_specific_properties['person']->get('name') . ' | ' . $this->page_title;
                 } else {
                     // if "name" value doesn't match an existing person/user,
                     // then following fallback flag is set
                     $this->page_specific_properties['no_such_user'] = true;
                 }
             } else if ($this->client_id !== '0') {
-                // TODO: if "name" value isn't set but client is logged in, then client is redirected to the client's own person -page
+                header('Location: ' . getContextRoot() . 'person/' . Person::getUrlEncodedName($this->client_id));
             } else {
-                // TODO: if "name" value isn't set and client isn't logged in, then client is redirected to the home page
-                $this->page_specific_properties['name'] = 'Julle';
-                $this->page_title = $this->page_specific_properties['name'] . ' | ' . $this->page_title;
+                header('Location: ' . getContextRoot());
             }
 
             // all person page property "sets" within following if -statement are exclusive to logged in clients
@@ -127,21 +127,29 @@ class AppStateCentral {
 
         private function userExists()
         {
-            // TODO: AppStateCentral's userExists() -utility function
             // Check if the $_GET['name'] value actually represents
             // a users name in the database's "users" table.
             // Return "true" if it does and "false" otherwise.
-            return false;
+            $person = Person::getPerson(new NameUrlEncoded($_GET['name']));
+            if ($person !== false) {
+                $this->page_specific_properties['person'] = $person;
+                return true;
+            } else {
+                return false;
+            }
         }
 
         private function matchNameWithId()
         {
-            // TODO: AppStateCentral's matchNameWithId() -utility function
             // Check if the $_GET['name'] value and the client id property
             // (which represents the currently logged in client's user id)
             // are on the same row in the database's "users" table.
             // Return "true" if that is the case and "false" otherwise.
-            return false;
+            if ($_GET['name'] === Person::getUrlEncodedName($this->client_id)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     // the object's access points: the public getters
