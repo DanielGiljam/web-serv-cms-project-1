@@ -15,6 +15,18 @@ function checkClientId()
     return '0';
 }
 
+function loginClient()
+{
+    if (isset($_POST) && isset($_POST['email']) && isset($_POST['password'])) {
+        $password_hash = Person::getPasswordHash($_POST['email']);
+        if (password_verify($_POST['password'], $password_hash)) {
+            // TODO: bouncer.php's loginClient() -function
+            // 1. Start session based off POSTed data
+            // 2. Create login -cookie for client
+        }
+    }
+}
+
 function logoutClient()
 {
     // TODO: bouncer.php's logoutClient() -function

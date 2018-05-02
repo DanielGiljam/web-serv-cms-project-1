@@ -35,11 +35,13 @@ class Person {
         switch ($property->name()) {
             case 'id':
                 $id = $property->value();
+                if (self::getNameUrlEncoded($id) === false) $id = null;
                 break;
             case 'name':
                 return false;
             case 'name_url_encoded':
                 $id = self::getId($property->value());
+                if ($id === false) $id = null;
                 break;
             case 'email':
                 return false;
@@ -54,18 +56,29 @@ class Person {
             default:
                 return false;
         }
-        if (!isset($id)) return false;
-        else return new Person($id);
+        if (isset($id)) return new Person($id);
+        else return false;
     }
 
     public static function getId($name_url_encoded)
     {
-        return getIdWithNameUrlEncoded($name_url_encoded)['id']; // TODO: make this function return a real value
+        $id = getIdWithNameUrlEncoded($name_url_encoded)['id'];
+        if (isset($id)) return $id;
+        else return false;
     }
 
-    public static function getUrlEncodedName($id)
+    public static function getNameUrlEncoded($id)
     {
-        return '>corresponding-url-encoded-name<'; // TODO: make this function return a real value
+        $name_url_encoded = getNameUrlEncodedWithId($id)['name_url_encoded'];
+        if (isset($name_url_encoded)) return $name_url_encoded;
+        else return false;
+    }
+
+    public static function getPasswordHash($email)
+    {
+        $password_hash = getPasswordHashWithEmail($email);
+        if (isset($password_hash)) return $password_hash;
+        else return false;
     }
 
     public static function getName(PersonProperty $id_or_name_url_encoded)

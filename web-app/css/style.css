@@ -16,13 +16,19 @@ body {
     max-width: 64rem;
 }
 #main-container > * {
-    width: auto;
-    padding: 1rem;
+}
+.container {
 }
 header {
 }
 header::after {
     position: fixed;
+}
+#page-title {
+    display: inline-block;
+}
+#header-buttons {
+    display: inline-block;
 }
 main {
     min-height: 8rem;
@@ -32,7 +38,6 @@ footer {
 }
 
 /* Tweaks */
-
 p ~ p {
     margin-top: 1rem;
 }

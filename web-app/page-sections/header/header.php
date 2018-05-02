@@ -34,7 +34,9 @@
 
                 <div class="container">
 
-                    <h1><?php echo $app_state_central->getPageTitle() ?></h1>
+                    <h1 id="page-title"><?php echo $app_state_central->getPageTitle() ?></h1>
+
+                    <?php if ($app_state_central->getClientId() !== '0') include 'header-elements/your-page-button.php'; else include 'header-elements/login-button.php' ?>
 
                 </div>
 

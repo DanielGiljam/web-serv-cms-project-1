@@ -29,8 +29,12 @@ class AppStateCentral {
 
         private function setClientId()
         {
-            if (isset($_GET['terminate-session']) && $_GET['terminate-session'] === 'true') {
+            if (isset($_GET['login-request']) && $_GET['login-request'] === 'true') {
+                loginClient();
+                header('Location: ' . getContextRoot());
+            } else if (isset($_GET['terminate-session']) && $_GET['terminate-session'] === 'true') {
                 logoutClient();
+                header('Location: ' . getContextRoot());
             } else {
                 $this->client_id = checkClientId();
             }
@@ -87,7 +91,7 @@ class AppStateCentral {
                     $this->page_specific_properties['no_such_user'] = true;
                 }
             } else if ($this->client_id !== '0') {
-                header('Location: ' . getContextRoot() . 'person/' . Person::getUrlEncodedName($this->client_id));
+                header('Location: ' . getContextRoot() . 'person/' . Person::getNameUrlEncoded($this->client_id));
             } else {
                 header('Location: ' . getContextRoot());
             }
@@ -145,7 +149,7 @@ class AppStateCentral {
             // (which represents the currently logged in client's user id)
             // are on the same row in the database's "users" table.
             // Return "true" if that is the case and "false" otherwise.
-            if ($_GET['name'] === Person::getUrlEncodedName($this->client_id)) {
+            if ($_GET['name'] === Person::getNameUrlEncoded($this->client_id)) {
                 return true;
             } else {
                 return false;
@@ -153,6 +157,11 @@ class AppStateCentral {
         }
 
     // the object's access points: the public getters
+
+        public function getClientId()
+        {
+            return $this->client_id;
+        }
 
         public function getPageTitle()
         {

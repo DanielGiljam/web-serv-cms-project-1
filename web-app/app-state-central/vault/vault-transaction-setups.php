@@ -8,7 +8,6 @@
 
 function setUpGetPerson ($id)
 {
-    global $person_executable;
     $person_executable = Vault::getConnection()->read(['id', 'name', 'name_url_encoded', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], ['users_main'], "`id` = ?");
     $person_executable->execute([$id]);
     return $person_executable->fetch();
@@ -16,15 +15,27 @@ function setUpGetPerson ($id)
 
 function setUpGetIdWithNameUrlEncoded ($name_url_encoded)
 {
-    global $id_executable;
     $id_executable = Vault::getConnection()->read(['id'], ['users_main'], "`name_url_encoded` = ?");
     $id_executable->execute([$name_url_encoded]);
     return $id_executable->fetch();
 }
 
+function setUpGetNameUrlEncodedWithId ($id)
+{
+    $name_url_encoded_executable = Vault::getConnection()->read(['name_url_encoded'], ['users_main'], "`id` = ?");
+    $name_url_encoded_executable->execute([$id]);
+    return $name_url_encoded_executable->fetch();
+}
+
+function setUpGetPasswordHashWithEmail ($email)
+{
+    $password_hash_executable = Vault::getConnection()->read(['password_hash'], ['users_main'], "`email` = ?");
+    $password_hash_executable->execute([$email]);
+    return $password_hash_executable->fetch();
+}
+
 function setUpGetNameWithId ($id)
 {
-    global $name_with_id_executable;
     $name_with_id_executable = Vault::getConnection()->read(['name'], ['users_main'], "`id` = ?");
     $name_with_id_executable->execute([$id]);
     return $name_with_id_executable->fetch();
@@ -32,16 +43,7 @@ function setUpGetNameWithId ($id)
 
 function setUpGetNameWithNameUrlEncoded ($name_url_encoded)
 {
-    global $name_with_name_url_encoded_executable;
     $name_with_name_url_encoded_executable = Vault::getConnection()->read(['name'], ['users_main'], "`name_url_encoded` = ?");
     $name_with_name_url_encoded_executable->execute([$name_url_encoded]);
     return $name_with_name_url_encoded_executable->fetch();
-}
-
-function setUpGetNameUrlEncodedWithId ($id)
-{
-    global $name_url_encoded_executable;
-    $name_url_encoded_executable = Vault::getConnection()->read(['name_url_encoded'], ['users_main'], "`id`= ?");
-    $name_url_encoded_executable->execute([$id]);
-    return $name_url_encoded_executable->fetch();
 }
