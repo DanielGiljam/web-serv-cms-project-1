@@ -20,14 +20,12 @@ function loginClient()
     if (isset($_POST) && isset($_POST['email']) && isset($_POST['password'])) {
         $password_hash = Person::getPasswordHash($_POST['email']);
         if (password_verify($_POST['password'], $password_hash)) {
-            // TODO: bouncer.php's loginClient() -function
             $_SESSION['id'] = true;
-            // 1. Start session based off POSTed data
-
-        }
-        else{
+        } else {
             $_SESSION['id'] = false;
         }
+        // TODO: bouncer.php's loginClient() -function
+        // 1. Start session based off POSTed data
         // 2. Create login -cookie for client
     }
 }

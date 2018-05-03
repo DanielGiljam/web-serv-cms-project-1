@@ -51,6 +51,7 @@ class AppStateCentral {
                     case 'register':
                         $this->page_specific_properties[0] = 'register';
                         $this->page_title .= ' | Register';
+                        // TODO: check if registration has been submitted (check POST, etc.)
                         break;
                     case 'forgot-password':
                         $this->page_specific_properties[0] = 'forgot-password';

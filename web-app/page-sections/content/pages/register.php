@@ -7,7 +7,7 @@
 ?>
 
 
-<form id="reg-form" action="" method="post">
+<form id="register-form" action="<?php echo getContextRoot() . 'register/submit'; ?>" method="post">
 
     <label>Name:
     <input type="text"
@@ -35,11 +35,14 @@
            value=""></label>
 
     <label>About yourself:
-    <textarea name="about_you" rows="4" cols="50"></textarea></label>
+    <textarea name="about_you"
+              rows="4"
+              cols="50"></textarea></label>
 
     <label>Annual Salary:
     <input type="number"
-           name="annual_salary" value=""></label>
+           name="annual_salary"
+           value=""></label>
 
     <label>Dating Preference:
     <input type="checkbox"
@@ -50,7 +53,8 @@
            value="preference-female">Female
     <input type="checkbox"
            name="dating_preference"
-           value="preference-all">All
+           value="preference-other">Other
 
-    <input type="submit" value="Click to Register"></label>
+    <input type="submit" value="Register"></label>
+
 </form>
