@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script creates a dedicated user for the web-serv-cms-project-1 database,
+# This script creates a dedicated user for the web_serv_cms_project_1 database,
 # and gives that user all the privileges in the scope of that database.
 # Made by Daniel Giljam, 2018-04-12.
 
@@ -27,7 +27,7 @@ else
 fi
 
 mysql $USERNAME_WITH_FLAG $PASSWORD_WITH_FLAG -Bse \
-"CREATE DATABASE IF NOT EXISTS \`web-serv-cms-project-1\` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;\
+"CREATE DATABASE IF NOT EXISTS \`web_serv_cms_project_1\` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;\
 CREATE USER 'wscp1-admin'@'%';\
-GRANT USAGE ON \`web-serv-cms-project-1\`.* TO 'wscp1-admin'@'%';\
-GRANT ALL PRIVILEGES ON \`web-serv-cms-project-1\`.* TO 'wscp1-admin'@'%' WITH GRANT OPTION;"
+GRANT USAGE ON \`web_serv_cms_project_1\`.* TO 'wscp1-admin'@'%';\
+GRANT ALL PRIVILEGES ON \`web_serv_cms_project_1\`.* TO 'wscp1-admin'@'%' WITH GRANT OPTION;"

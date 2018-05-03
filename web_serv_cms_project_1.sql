@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2018 at 12:11 PM
+-- Generation Time: May 03, 2018 at 05:48 AM
 -- Server version: 5.6.39
 -- PHP Version: 7.1.14
 
@@ -19,35 +19,37 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `web-serv-cms-project-1`
+-- Database: `web_serv_cms_project_1`
 --
-CREATE DATABASE IF NOT EXISTS `web-serv-cms-project-1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `web-serv-cms-project-1`;
+CREATE DATABASE IF NOT EXISTS `web_serv_cms_project_1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `web_serv_cms_project_1`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `users_main`
 --
--- Creation: Apr 12, 2018 at 11:40 AM
+-- Creation: May 02, 2018 at 07:06 PM
 --
 
 CREATE TABLE IF NOT EXISTS `users_main` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `namn` char(255) NOT NULL,
-  `losenord` char(255) NOT NULL,
+  `name` char(255) NOT NULL,
+  `name_url_encoded` char(255) NOT NULL,
+  `password_hash` char(255) NOT NULL,
   `email` char(255) NOT NULL,
-  `postnummer` char(255) NOT NULL,
-  `annonstext` mediumtext NOT NULL,
-  `arslon` decimal(10,0) NOT NULL,
-  `soker` char(255) NOT NULL,
+  `zip_code` char(255) NOT NULL,
+  `about_you` mediumtext NOT NULL,
+  `annual_salary` decimal(10,0) NOT NULL,
+  `dating_preference` char(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `namn` (`namn`),
-  KEY `arslon` (`arslon`),
-  KEY `soker` (`soker`)
+  UNIQUE KEY `name_url_encoded` (`name_url_encoded`),
+  UNIQUE KEY `email` (`email`),
+  KEY `namn` (`name`),
+  KEY `arslon` (`annual_salary`),
+  KEY `soker` (`dating_preference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
