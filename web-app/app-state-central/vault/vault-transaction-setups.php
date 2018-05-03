@@ -47,3 +47,10 @@ function setUpGetNameWithNameUrlEncoded ($name_url_encoded)
     $name_with_name_url_encoded_executable->execute([$name_url_encoded]);
     return $name_with_name_url_encoded_executable->fetch();
 }
+
+function setUpVerifyNameUrlEncoded ($name_url_encoded)
+{
+    $verify_name_url_encoded_executable = Vault::getConnection()->read(['name_url_encoded'], ['users_main'], "`name_url_encoded` = ?");
+    $verify_name_url_encoded_executable->execute([$name_url_encoded]);
+    return $verify_name_url_encoded_executable->fetch();
+}

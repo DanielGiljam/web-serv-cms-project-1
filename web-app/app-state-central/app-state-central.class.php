@@ -152,8 +152,20 @@ class AppStateCentral {
                         $zip_code = $_POST['zip_code'];
                         $about_you = $_POST['about_you'];
                         $annual_salary = $_POST['annual_salary'];
-                        $dating_preference = $_POST['dating_preference'][0] + $_POST['dating_preference'][1] + $_POST['dating_preference'][2];
-                        Person::createPerson($name, $password_hash, $email, $zip_code, $about_you, $annual_salary, $dating_preference);
+                        if (isset($_POST['dating_preference_male'])) $dp_0 = 4;
+                        else $dp_0 = 0;
+                        if (isset($_POST['dating_preference_female'])) $dp_1 = 3;
+                        else $dp_1 = 0;
+                        if (isset($_POST['dating_preference_other'])) $dp_2 = 2;
+                        else $dp_2 = 0;
+                        $dating_preference = $dp_0 + $dp_1 + $dp_2;
+                        Person::createPerson(   $name,
+                                                $password_hash,
+                                                $email,
+                                                $zip_code,
+                                                $about_you,
+                                                $annual_salary,
+                                                $dating_preference);
                         $this->page_specific_properties['registration-submitted'] = true;
                     } else {
                         header('Location: ' . getContextRoot());

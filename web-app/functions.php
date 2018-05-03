@@ -28,6 +28,24 @@ function urlCleanup()
     include 'miscellaneous/url-cleanup.php';
 }
 
+function nameUrlEncoder($name)
+{
+    $name_url_encoded = strtolower($name);
+    $name_url_encoded = preg_replace('/ /i', '-', $name_url_encoded);
+    $name_url_encoded = preg_replace('/\'/i', '', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[àáâãäåæ]/i', 'a', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[ç]/i', 'c', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[èéêëŒ]/i', 'e', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[ìíîï]/i', 'i', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[ðñòóôõöøœ]/i', 'o', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[ùúûü]/i', 'u', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[ýÿŸ]/i', 'y', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[þ]/i', 'p', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[Šš]/i', 's', $name_url_encoded);
+    $name_url_encoded = preg_replace('/[ƒ]/i', 'f', $name_url_encoded);
+    return $name_url_encoded;
+}
+
 // See "all-in-one-seo-pack.example.html" in the miscellaneous folder for help on this one
 function allInOneSEOPack(   $site_name, 
                             $title,

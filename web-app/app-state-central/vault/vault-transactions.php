@@ -21,7 +21,7 @@ function getPerson($id)
 
 function createPerson($person_data)
 {
-    $create_person_executable = Vault::getConnection()->create(['users_main'], ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], $person_data);
+    $create_person_executable = Vault::getConnection()->create('users_main', ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], $person_data, true);
     $create_person_executable->execute();
 }
 
@@ -82,5 +82,17 @@ function getNameWithNameUrlEncoded($name_url_encoded)
     } else {
         $name_with_name_url_encoded_executable->execute([$name_url_encoded]);
         return $name_with_name_url_encoded_executable->fetch();
+    }
+}
+
+$verify_name_url_encoded_executable = null;
+
+function verifyNameUrlEncoded($name_url_encoded)
+{
+    if (!isset($verify_name_url_encoded_executable)) {
+        return setUpVerifyNameUrlEncoded($name_url_encoded);
+    } else {
+        $verify_name_url_encoded_executable->execute([$name_url_encoded]);
+        return $verify_name_url_encoded_executable->fetch();
     }
 }

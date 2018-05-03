@@ -43,14 +43,14 @@
 
     <label>Dating Preference:
     <input type="checkbox"
-           name="dating_preference[0]"
-           value="4">Male
+           name="dating_preference_male"
+           value="dating_preference_male">Male
     <input type="checkbox"
-           name="dating_preference[1]"
-           value="3">Female
+           name="dating_preference_female"
+           value="dating_preference_female">Female
     <input type="checkbox"
-           name="dating_preference[2]"
-           value="2">Other
+           name="dating_preference_other"
+           value="dating_preference_other">Other
 
     <input type="submit" value="Register"></label>
 

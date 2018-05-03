@@ -45,11 +45,12 @@ class Vault {
         $i = 0;
         foreach ($values as $v) {
             if ($id_gen_flag && $i === 0) $command .= $v;
-            else $command .= "`" . $v . "`";
+            else $command .= "'" . $v . "'";
             if ($v !== $values[count($values) - 1]) $command .= ",";
             else $command .= ")";
             $i++;
         }
+        echo $command;
         return $this->handler->prepare($command);
     }
 

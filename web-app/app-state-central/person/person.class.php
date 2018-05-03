@@ -30,44 +30,30 @@ class Person {
         $this->dating_preference = new DatingPreference($person_data['dating_preference']);
     }
 
-    public static function createPerson($name, $password_hash, $email, $zip_code, $about_you, $annual_salary, $dating_preference)
+    public static function createPerson(    $name,
+                                            $password_hash,
+                                            $email,
+                                            $zip_code,
+                                            $about_you,
+                                            $annual_salary,
+                                            $dating_preference)
     {
-        $id = "unhex(replace(UUID(),'-',''";
-        $name_url_encoded = $name;
-        strtolower($name_url_encoded);
-        while (strrpos($name_url_encoded, ' ')) {
-            str_replace($name_url_encoded, ' ', '-');
+        $id = "unhex(replace(UUID(),'-','')";
+        $name_url_encoded = nameUrlEncoder($name);
+        $i = 2;
+        while (!self::verifyNameUrlEncoded($name_url_encoded)) {
+            if ($i === 2) $name_url_encoded .= '-' . $i;
+            else $name_url_encoded = preg_replace('/-' . ($i - 1) . '$/i', '/-' . $i . '$/i', $name_url_encoded);
         }
-        while (strrpos($name_url_encoded, 'àáâãäåæ')) {
-            str_replace($name_url_encoded, 'àáâãäåæ', 'a');
-        }
-        while (strrpos($name_url_encoded, 'ç')) {
-            str_replace($name_url_encoded, 'ç', 'c');
-        }
-        while (strrpos($name_url_encoded, 'èéêëŒ')) {
-            str_replace($name_url_encoded, 'èéêëŒ', 'e');
-        }
-        while (strrpos($name_url_encoded, 'ìíîï')) {
-            str_replace($name_url_encoded, 'ìíîï', 'i');
-        }
-        while (strrpos($name_url_encoded, 'ðñòóôõöøœ')) {
-            str_replace($name_url_encoded, 'ðñòóôõöøœ', 'o');
-        }
-        while (strrpos($name_url_encoded, 'ùúûü')) {
-            str_replace($name_url_encoded, 'ùúûü', 'u');
-        }
-        while (strrpos($name_url_encoded, 'ýÿŸ')) {
-            str_replace($name_url_encoded, 'ýÿŸ', 'y');
-        }
-        while (strrpos($name_url_encoded, 'þ')) {
-            str_replace($name_url_encoded, 'þ', 'p');
-        }
-        while (strrpos($name_url_encoded, 'Šš')) {
-            str_replace($name_url_encoded, 'Šš', 's');
-        }
-        while (strrpos($name_url_encoded, 'ƒ')) {
-            str_replace($name_url_encoded, 'ƒ', 'f');
-        }
+        createPerson([  $id,
+                        $name,
+                        $name_url_encoded,
+                        $password_hash,
+                        $email,
+                        $zip_code,
+                        $about_you,
+                        $annual_salary,
+                        $dating_preference]);
     }
 
     public static function getPerson(PersonProperty $property)
@@ -128,6 +114,12 @@ class Person {
         } else {
             return '>corresponding-name<'; // TODO: make this function return a real value
         }
+    }
+
+    private static function verifyNameUrlEncoded($name_url_encoded)
+    {
+        if (isset(verifyNameUrlEncoded($name_url_encoded)['name_url_encoded'])) return false;
+        else return true;
     }
 
     public function get($property_name)
