@@ -38,7 +38,7 @@ class Person {
                                             $annual_salary,
                                             $dating_preference)
     {
-        $id = "unhex(replace(UUID(),'-','')";
+        $id = "unhex(replace(UUID(),'-',''))";
         $name_url_encoded = nameUrlEncoder($name);
         $i = 2;
         while (!self::verifyNameUrlEncoded($name_url_encoded)) {
@@ -46,14 +46,14 @@ class Person {
             else $name_url_encoded = preg_replace('/-' . ($i - 1) . '$/i', '/-' . $i . '$/i', $name_url_encoded);
         }
         createPerson([  $id,
-                        $name,
-                        $name_url_encoded,
-                        $password_hash,
-                        $email,
-                        $zip_code,
-                        $about_you,
-                        $annual_salary,
-                        $dating_preference]);
+                        "'" . $name . "'",
+                        "'" . $name_url_encoded . "'",
+                        "'" . $password_hash . "'",
+                        "'" . $email . "'",
+                        "'" . $zip_code . "'",
+                        "'" . $about_you . "'",
+                        "'" . $annual_salary . "'",
+                        "'" . $dating_preference . "'"]);
     }
 
     public static function getPerson(PersonProperty $property)

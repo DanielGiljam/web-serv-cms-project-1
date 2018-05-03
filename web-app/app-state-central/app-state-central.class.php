@@ -141,7 +141,9 @@ class AppStateCentral {
                                 isset($_POST['zip_code']) &&
                                 isset($_POST['about_you']) &&
                                 isset($_POST['annual_salary']) &&
-                                isset($_POST['dating_preference']);
+                               (isset($_POST['dating_preference_male']) ||
+                                isset($_POST['dating_preference_female']) ||
+                                isset($_POST['dating_preference_other']));
                 if ($verify_post) {
                     $password = $_POST['password'];
                     $confirm_password = $_POST['confirm_password'];

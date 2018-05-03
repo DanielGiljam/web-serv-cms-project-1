@@ -34,7 +34,7 @@ class Vault {
         // TODO: make this function
     }
 
-    public function create($insert_into, $columns, $values, $id_gen_flag)
+    public function create($insert_into, $columns, $values)
     {
         $command = "INSERT INTO `" . $insert_into . "` (";
         foreach ($columns as $c) {
@@ -44,13 +44,11 @@ class Vault {
         $command .= ") VALUES (";
         $i = 0;
         foreach ($values as $v) {
-            if ($id_gen_flag && $i === 0) $command .= $v;
-            else $command .= "'" . $v . "'";
+            $command .= $v;
             if ($v !== $values[count($values) - 1]) $command .= ",";
             else $command .= ")";
             $i++;
         }
-        echo $command;
         return $this->handler->prepare($command);
     }
 
