@@ -5,6 +5,16 @@ body {
 header {
     background-color: lightcoral;
 }
+#header-buttons > a {
+    color: #367beb;
+}
+#login-form {
+    background-color: #444444;
+    color: white;
+}
+#login-form > a {
+    color: cornflowerblue;
+}
 main {
     background-color: white;
 }

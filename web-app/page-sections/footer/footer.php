@@ -8,11 +8,7 @@
 
             <footer>
 
-                <div class="container">
-
-                    <span>This is a footer.</span>
-
-                </div>
+                <span>GiljamKallmann, 2018</span>
 
             </footer>
 

@@ -13,6 +13,8 @@ class AppStateCentral {
 
     private $client_id = '0';
     private $page_title = 'Dating Site';
+    private $page_title_domain = 'Dating Site';
+    private $page_title_location = null;
     private $theme_href = '/css/theme.css';
     private $script_tags = ''; // TODO: setScriptTags() -function!
 
@@ -50,13 +52,15 @@ class AppStateCentral {
                         break;
                     case 'register':
                         $this->page_specific_properties[0] = 'register';
-                        $this->page_title .= ' | Register';
+                        $this->page_title_location = 'Register';
+                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
                         // TODO: check if registration has been submitted (check POST, etc.)
                         $this->setRegisterPageProperties();
                         break;
                     case 'forgot-password':
                         $this->page_specific_properties[0] = 'forgot-password';
-                        $this->page_title .= ' | Forgot Password';
+                        $this->page_title_location = 'Forgot Password';
+                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
                         break;
                     default:
                         $this->page_specific_properties[0] = 'feed';
@@ -86,7 +90,8 @@ class AppStateCentral {
                 if ($this->userExists()) {
                     // format "name" value and set the page title property accordingly
                     $this->page_specific_properties['url_name'] = $_GET['name'];
-                    $this->page_title = $this->page_specific_properties['person']->get('name')->value() . ' | ' . $this->page_title;
+                    $this->page_title_location = $this->page_specific_properties['person']->get('name')->value();
+                    $this->page_title = $this->page_title_location . ' at ' . $this->page_title_domain;
                 } else {
                     // if "name" value doesn't match an existing person/user,
                     // then following fallback flag is set
@@ -168,9 +173,13 @@ class AppStateCentral {
                                                 $about_you,
                                                 $annual_salary,
                                                 $dating_preference);
-                        $this->page_specific_properties['registration-submitted'] = true;
+                        $this->page_specific_properties['reg-sub-finish-code'] = 0;
+                        $this->page_title_location = 'Registration Successful';
+                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
                     } else {
-                        header('Location: ' . getContextRoot());
+                        $this->page_specific_properties['reg-sub-finish-code'] = 1;
+                        $this->page_title_location = 'Registration Failed';
+                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
                     }
                 } else {
                     header('Location: ' . getContextRoot());
@@ -215,6 +224,16 @@ class AppStateCentral {
         public function getPageTitle()
         {
             return $this->page_title;
+        }
+
+        public function getPageTitleDomain()
+        {
+            return $this->page_title_domain;
+        }
+
+        public function getPageTitleLocation()
+        {
+            return $this->page_title_location;
         }
 
         public function getThemeHref()

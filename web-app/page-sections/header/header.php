@@ -32,12 +32,15 @@
 
             <header>
 
-                <div class="container">
+                <div id="header-grid-container">
 
-                    <h1 id="page-title"><?php echo $app_state_central->getPageTitle() ?></h1>
+                    <div id="page-titles">
+                        <h1><?php echo $app_state_central->getPageTitleDomain() ?></h1>
+                        <h2><?php echo $app_state_central->getPageTitleLocation() ?></h2>
+                    </div>
 
                     <?php if ($app_state_central->getClientId() !== '0') include 'header-elements/your-page-button.php'; else include 'header-elements/login-button.php' ?>
 
-                </div>
+
 
             </header>

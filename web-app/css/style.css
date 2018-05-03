@@ -15,35 +15,63 @@ body {
     margin: 0 auto;
     max-width: 64rem;
 }
-#main-container > * {
-}
-.container {
-}
-header {
-}
 header::after {
     position: fixed;
 }
-#page-title {
+#header-grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+}
+#page-titles {
     display: inline-block;
+    padding: 1rem 0 1rem 1rem;
+    align-self: end;
+    justify-self: start;
 }
 #header-buttons {
     display: inline-block;
+    padding: 1rem 1rem 1rem 0;
+    align-self: end;
+    justify-self: end;
+}
+#login-form {
+    padding: 0.75rem 0.5rem;
+    text-align: right;
 }
 main {
     min-height: 8rem;
+    padding: 1rem;
 }
 footer {
-    min-height: 2rem;
+    padding: 1rem;
 }
 
 /* Tweaks */
+#login-form > a {
+    display: block;
+    margin-top: 0.5rem;
+}
 p ~ p {
     margin-top: 1rem;
 }
+#register-form > label ~ label {
+    display: block;
+    margin-top: 1rem;
+}
+#register-form-about-you {
+    display: inline-block;
+    vertical-align: top;
+}
+#register-form-submit {
+    margin-top: 1rem;
+}
+footer > span {
+    font-style: italic;
+}
 
 /* User agent stylesheet overrides */
-h1, p {
+h1, h2, p {
     margin-top: 0;
     margin-bottom: 0;
 }

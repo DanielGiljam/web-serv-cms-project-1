@@ -43,7 +43,8 @@ class Person {
         $i = 2;
         while (!self::verifyNameUrlEncoded($name_url_encoded)) {
             if ($i === 2) $name_url_encoded .= '-' . $i;
-            else $name_url_encoded = preg_replace('/-' . ($i - 1) . '$/i', '/-' . $i . '$/i', $name_url_encoded);
+            else $name_url_encoded = preg_replace('/-' . ($i - 1) . '$/i', '-' . $i, $name_url_encoded);
+            $i++;
         }
         createPerson([  $id,
                         "'" . $name . "'",

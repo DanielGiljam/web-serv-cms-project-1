@@ -6,6 +6,9 @@
 
 <div id="header-buttons">
     <button onclick=toggleLoginForm()>Log in</button>
+    <a href="<?php echo getContextRoot() . 'register' ?>">Sign up</a>
+</div>
+
 </div>
 
 <form id="login-form" action="<?php echo getContextRoot() . 'login' ?>" method="post">

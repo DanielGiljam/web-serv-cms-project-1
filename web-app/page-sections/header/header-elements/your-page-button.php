@@ -9,3 +9,4 @@
     <button onclick=goToLogout()>Log out</button>
 </div>
 
+</div>
