@@ -52,7 +52,7 @@ class AppStateCentral {
                         $this->page_specific_properties[0] = 'register';
                         $this->page_title .= ' | Register';
                         // TODO: check if registration has been submitted (check POST, etc.)
-                        $this->checkRegistrationSubmission();
+                        $this->setRegisterPageProperties();
                         break;
                     case 'forgot-password':
                         $this->page_specific_properties[0] = 'forgot-password';
@@ -131,26 +131,35 @@ class AppStateCentral {
 
     // utility functions (tasks) and procedures
     
-        private function checkRegistrationSubmission()
+        private function setRegisterPageProperties()
         {
             if (isset($_GET['registration-submitted']) && $_GET['registration-submitted'] === 'true') {
                 $verify_post =  isset($_POST['name']) && 
                                 isset($_POST['email']) && 
-                                isset($_POST['password_hash']) && 
-                                isset($_POST['confirm_password_hash']) &&
+                                isset($_POST['password']) &&
+                                isset($_POST['confirm_password']) &&
                                 isset($_POST['zip_code']) &&
                                 isset($_POST['about_you']) &&
                                 isset($_POST['annual_salary']) &&
                                 isset($_POST['dating_preference']);
                 if ($verify_post) {
-                    $name = $_POST['name'];
-                    $email = $_POST['email'];
-                    $password_hash = $_POST['password_hash'];
-                    $confirm_password_hash = $_POST['confirm_password_hash'];
-                    $zip_code = $_POST['zip_code'];
-                    $about_you = $_POST['about_you'];
-                    $annual_salary = $_POST['annual_salary'];
-                    $dating_preference = $_POST['dating_preference'];
+                    $password = $_POST['password'];
+                    $confirm_password = $_POST['confirm_password'];
+                    $password_hash = ($password === $confirm_password) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
+                    if (isset($password_hash)) {
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $zip_code = $_POST['zip_code'];
+                        $about_you = $_POST['about_you'];
+                        $annual_salary = $_POST['annual_salary'];
+                        $dating_preference = $_POST['dating_preference'][0] + $_POST['dating_preference'][1] + $_POST['dating_preference'][2];
+                        Person::createPerson($name, $password_hash, $email, $zip_code, $about_you, $annual_salary, $dating_preference);
+                        $this->page_specific_properties['registration-submitted'] = true;
+                    } else {
+                        header('Location: ' . getContextRoot());
+                    }
+                } else {
+                    header('Location: ' . getContextRoot());
                 }
             }
         }
