@@ -52,6 +52,7 @@ class AppStateCentral {
                         $this->page_specific_properties[0] = 'register';
                         $this->page_title .= ' | Register';
                         // TODO: check if registration has been submitted (check POST, etc.)
+                        $this->checkRegistrationSubmission();
                         break;
                     case 'forgot-password':
                         $this->page_specific_properties[0] = 'forgot-password';
@@ -129,6 +130,30 @@ class AppStateCentral {
         }
 
     // utility functions (tasks) and procedures
+    
+        private function checkRegistrationSubmission()
+        {
+            if (isset($_GET['registration-submitted']) && $_GET['registration-submitted'] === 'true') {
+                $verify_post =  isset($_POST['name']) && 
+                                isset($_POST['email']) && 
+                                isset($_POST['password_hash']) && 
+                                isset($_POST['confirm_password_hash']) &&
+                                isset($_POST['zip_code']) &&
+                                isset($_POST['about_you']) &&
+                                isset($_POST['annual_salary']) &&
+                                isset($_POST['dating_preference']);
+                if ($verify_post) {
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $password_hash = $_POST['password_hash'];
+                    $confirm_password_hash = $_POST['confirm_password_hash'];
+                    $zip_code = $_POST['zip_code'];
+                    $about_you = $_POST['about_you'];
+                    $annual_salary = $_POST['annual_salary'];
+                    $dating_preference = $_POST['dating_preference'];
+                }
+            }
+        }
 
         private function userExists()
         {

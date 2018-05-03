@@ -30,6 +30,11 @@ class Person {
         $this->dating_preference = new DatingPreference($person_data['dating_preference']);
     }
 
+    private static function createPerson($name, $password_hash, $email, $zip_code, $about_you, $annual_salary, $dating_preference)
+    {
+
+    }
+
     public static function getPerson(PersonProperty $property)
     {
         switch ($property->name()) {
