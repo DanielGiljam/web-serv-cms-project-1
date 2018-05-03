@@ -7,7 +7,7 @@
 // This one's return value may change until the site is settled on its final platform
 function getContextRoot()
 {
-    return '/daniels-path/web-serv-cms-project-1/';
+    return '/W_D_CMS/web-app/';
 }
 
 function initialize() 
