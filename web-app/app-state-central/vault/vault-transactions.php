@@ -17,7 +17,12 @@ function getPerson($id)
         $person_executable->execute([$id]);
         return $person_executable->fetch();
     }
+}
 
+function createPerson($person_data)
+{
+    $create_person_executable = Vault::getConnection()->create(['users_main'], ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], $person_data);
+    $create_person_executable->execute();
 }
 
 $id_executable = null;

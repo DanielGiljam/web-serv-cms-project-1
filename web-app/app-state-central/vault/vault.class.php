@@ -34,9 +34,23 @@ class Vault {
         // TODO: make this function
     }
 
-    public function create()
+    public function create($insert_into, $columns, $values, $id_gen_flag)
     {
-        // TODO: make this function
+        $command = "INSERT INTO `" . $insert_into . "` (";
+        foreach ($columns as $c) {
+            $command .= "`" . $c . "`";
+            if ($c !== $columns[count($columns) - 1]) $command .= ",";
+        }
+        $command .= ") VALUES (";
+        $i = 0;
+        foreach ($values as $v) {
+            if ($id_gen_flag && $i === 0) $command .= $v;
+            else $command .= "`" . $v . "`";
+            if ($v !== $values[count($values) - 1]) $command .= ",";
+            else $command .= ")";
+            $i++;
+        }
+        return $this->handler->prepare($command);
     }
 
     public function read($select, $from, $where)

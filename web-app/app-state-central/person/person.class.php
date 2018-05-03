@@ -32,7 +32,42 @@ class Person {
 
     public static function createPerson($name, $password_hash, $email, $zip_code, $about_you, $annual_salary, $dating_preference)
     {
-
+        $id = "unhex(replace(UUID(),'-',''";
+        $name_url_encoded = $name;
+        strtolower($name_url_encoded);
+        while (strrpos($name_url_encoded, ' ')) {
+            str_replace($name_url_encoded, ' ', '-');
+        }
+        while (strrpos($name_url_encoded, 'àáâãäåæ')) {
+            str_replace($name_url_encoded, 'àáâãäåæ', 'a');
+        }
+        while (strrpos($name_url_encoded, 'ç')) {
+            str_replace($name_url_encoded, 'ç', 'c');
+        }
+        while (strrpos($name_url_encoded, 'èéêëŒ')) {
+            str_replace($name_url_encoded, 'èéêëŒ', 'e');
+        }
+        while (strrpos($name_url_encoded, 'ìíîï')) {
+            str_replace($name_url_encoded, 'ìíîï', 'i');
+        }
+        while (strrpos($name_url_encoded, 'ðñòóôõöøœ')) {
+            str_replace($name_url_encoded, 'ðñòóôõöøœ', 'o');
+        }
+        while (strrpos($name_url_encoded, 'ùúûü')) {
+            str_replace($name_url_encoded, 'ùúûü', 'u');
+        }
+        while (strrpos($name_url_encoded, 'ýÿŸ')) {
+            str_replace($name_url_encoded, 'ýÿŸ', 'y');
+        }
+        while (strrpos($name_url_encoded, 'þ')) {
+            str_replace($name_url_encoded, 'þ', 'p');
+        }
+        while (strrpos($name_url_encoded, 'Šš')) {
+            str_replace($name_url_encoded, 'Šš', 's');
+        }
+        while (strrpos($name_url_encoded, 'ƒ')) {
+            str_replace($name_url_encoded, 'ƒ', 'f');
+        }
     }
 
     public static function getPerson(PersonProperty $property)
