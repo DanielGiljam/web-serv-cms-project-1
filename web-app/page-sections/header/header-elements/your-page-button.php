@@ -5,7 +5,7 @@
 ?>
 
 <div id="header-buttons">
-    <button onclick=goToMyPage()>My page</button>
+    <a href="<?php echo getContextRoot() . 'person' ?>">My page</a>
     <button onclick=goToLogout()>Log out</button>
 </div>
 

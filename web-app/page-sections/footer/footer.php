@@ -6,14 +6,14 @@
 
 ?>
 
-            <footer>
+<footer>
 
-                <span>GiljamKallmann, 2018</span>
+    <span>GiljamKallmann, 2018</span>
 
-            </footer>
+</footer>
 
-        </div>
+</div>
 
-    </body>
+</body>
 
 </html>

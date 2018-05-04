@@ -16,7 +16,7 @@ class AppStateCentral {
     private $page_title_domain = 'Dating Site';
     private $page_title_location = null;
     private $theme_href = '/css/theme.css';
-    private $script_tags = ''; // TODO: setScriptTags() -function!
+    private $script_tags = '';
 
     private $page_specific_properties = [];
 
@@ -25,6 +25,7 @@ class AppStateCentral {
         $this->setClientId();
         $this->setPageTitle();
         $this->setThemeHref();
+        $this->setScriptTags();
     }
 
     // functions for setting basic properties
@@ -54,7 +55,6 @@ class AppStateCentral {
                         $this->page_specific_properties[0] = 'register';
                         $this->page_title_location = 'Register';
                         $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
-                        // TODO: check if registration has been submitted (check POST, etc.)
                         $this->setRegisterPageProperties();
                         break;
                     case 'forgot-password':
@@ -79,7 +79,25 @@ class AppStateCentral {
             // TODO: theme setting function comes here...
         }
 
+        private function setScriptTags()
+        {
+            $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-login-form.js"></script><script src="' . getContextRoot() . 'js/go-to-logout.js"></script>';
+            switch ($this->page_specific_properties[0]) {
+                case 'person':
+                    $this->script_tags = $login_logout_related_tags;
+                    break;
+                case 'register':
+                    break;
+                case 'forgot-password':
+                    break;
+                default:
+                    $this->script_tags = $login_logout_related_tags;
+                    break;
+            }
+        }
+
     // functions for setting page specific properties
+    // these functions are called from the setPageTitle() -function
 
         private function setPersonPageProperties()
         {
@@ -124,6 +142,57 @@ class AppStateCentral {
             // TODO: more person page property "sets" here...
         }
 
+        private function setRegisterPageProperties()
+    {
+        if (isset($_GET['registration-submitted']) && $_GET['registration-submitted'] === 'true') {
+            $verify_post =  isset($_POST['name']) &&
+                isset($_POST['email']) &&
+                isset($_POST['password']) &&
+                isset($_POST['confirm_password']) &&
+                isset($_POST['zip_code']) &&
+                isset($_POST['about_you']) &&
+                isset($_POST['annual_salary']) &&
+                (isset($_POST['dating_preference_male']) ||
+                    isset($_POST['dating_preference_female']) ||
+                    isset($_POST['dating_preference_other']));
+            if ($verify_post) {
+                $password = $_POST['password'];
+                $confirm_password = $_POST['confirm_password'];
+                $password_hash = ($password === $confirm_password) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
+                if (isset($password_hash)) {
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $zip_code = $_POST['zip_code'];
+                    $about_you = $_POST['about_you'];
+                    $annual_salary = $_POST['annual_salary'];
+                    if (isset($_POST['dating_preference_male'])) $dp_0 = 4;
+                    else $dp_0 = 0;
+                    if (isset($_POST['dating_preference_female'])) $dp_1 = 3;
+                    else $dp_1 = 0;
+                    if (isset($_POST['dating_preference_other'])) $dp_2 = 2;
+                    else $dp_2 = 0;
+                    $dating_preference = $dp_0 + $dp_1 + $dp_2;
+                    Person::createPerson(   $name,
+                        $password_hash,
+                        $email,
+                        $zip_code,
+                        $about_you,
+                        $annual_salary,
+                        $dating_preference);
+                    $this->page_specific_properties['reg-sub-finish-code'] = 0;
+                    $this->page_title_location = 'Registration Successful';
+                    $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
+                } else {
+                    $this->page_specific_properties['reg-sub-finish-code'] = 1;
+                    $this->page_title_location = 'Registration Failed';
+                    $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
+                }
+            } else {
+                redirect('');
+            }
+        }
+    }
+
         private function setFeedPageProperties()
         {
             // TODO: feed page property "sets" come here...
@@ -135,57 +204,6 @@ class AppStateCentral {
         }
 
     // utility functions (tasks) and procedures
-    
-        private function setRegisterPageProperties()
-        {
-            if (isset($_GET['registration-submitted']) && $_GET['registration-submitted'] === 'true') {
-                $verify_post =  isset($_POST['name']) && 
-                                isset($_POST['email']) && 
-                                isset($_POST['password']) &&
-                                isset($_POST['confirm_password']) &&
-                                isset($_POST['zip_code']) &&
-                                isset($_POST['about_you']) &&
-                                isset($_POST['annual_salary']) &&
-                               (isset($_POST['dating_preference_male']) ||
-                                isset($_POST['dating_preference_female']) ||
-                                isset($_POST['dating_preference_other']));
-                if ($verify_post) {
-                    $password = $_POST['password'];
-                    $confirm_password = $_POST['confirm_password'];
-                    $password_hash = ($password === $confirm_password) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
-                    if (isset($password_hash)) {
-                        $name = $_POST['name'];
-                        $email = $_POST['email'];
-                        $zip_code = $_POST['zip_code'];
-                        $about_you = $_POST['about_you'];
-                        $annual_salary = $_POST['annual_salary'];
-                        if (isset($_POST['dating_preference_male'])) $dp_0 = 4;
-                        else $dp_0 = 0;
-                        if (isset($_POST['dating_preference_female'])) $dp_1 = 3;
-                        else $dp_1 = 0;
-                        if (isset($_POST['dating_preference_other'])) $dp_2 = 2;
-                        else $dp_2 = 0;
-                        $dating_preference = $dp_0 + $dp_1 + $dp_2;
-                        Person::createPerson(   $name,
-                                                $password_hash,
-                                                $email,
-                                                $zip_code,
-                                                $about_you,
-                                                $annual_salary,
-                                                $dating_preference);
-                        $this->page_specific_properties['reg-sub-finish-code'] = 0;
-                        $this->page_title_location = 'Registration Successful';
-                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
-                    } else {
-                        $this->page_specific_properties['reg-sub-finish-code'] = 1;
-                        $this->page_title_location = 'Registration Failed';
-                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
-                    }
-                } else {
-                    redirect('');
-                }
-            }
-        }
 
         private function userExists()
         {

@@ -18,6 +18,13 @@ header {
 main {
     background-color: white;
 }
+#register-form > label > span:last-child {
+    color: red;
+    font-style: italic;
+}
 footer {
     background-color: lightcoral;
+}
+footer > span {
+    font-style: italic;
 }

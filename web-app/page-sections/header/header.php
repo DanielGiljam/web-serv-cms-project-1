@@ -10,37 +10,40 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-    <head>
+<head>
 
-        <title><?php echo $app_state_central->getPageTitle() ?></title>
+<title><?php echo $app_state_central->getPageTitle() ?></title>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/print.css" media="print" />
-        <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/style.css" media="screen, projection" />
-        <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() . $app_state_central->getThemeHref() ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/style.css" media="screen, projection" />
+<link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() . $app_state_central->getThemeHref() ?>" />
 
-        <?php echo $app_state_central->getScriptTags() ?>
+<?php echo $app_state_central->getScriptTags() ?>
 
+</head>
 
+<body>
 
-    </head>
+<div id="main-container">
 
-    <body>
+<header>
 
-        <div id="main-container">
+<div id="header-grid-container">
 
-            <header>
+<div id="page-titles">
+    <h1><?php echo $app_state_central->getPageTitleDomain() ?></h1>
+    <h2><?php echo $app_state_central->getPageTitleLocation() ?></h2>
+</div>
 
-                <div id="header-grid-container">
+<?php
 
-                    <div id="page-titles">
-                        <h1><?php echo $app_state_central->getPageTitleDomain() ?></h1>
-                        <h2><?php echo $app_state_central->getPageTitleLocation() ?></h2>
-                    </div>
+    if ($app_state_central->getPageSpecificProperties()[0] === 'person' || $app_state_central->getPageSpecificProperties()[0] === 'feed') {
+        if ($app_state_central->getClientId() !== '0') include 'header-elements/your-page-button.php';
+        else include 'header-elements/login-button.php';
+    }
 
-                    <?php if ($app_state_central->getClientId() !== '0') include 'header-elements/your-page-button.php'; else include 'header-elements/login-button.php' ?>
+?>
 
-
-
-            </header>
+</header>

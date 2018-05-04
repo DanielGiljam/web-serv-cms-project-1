@@ -20,7 +20,7 @@ header::after {
 }
 #header-grid-container {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto;
     grid-template-rows: auto;
 }
 #page-titles {
@@ -43,6 +43,10 @@ main {
     min-height: 8rem;
     padding: 1rem;
 }
+#register-form {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
 footer {
     padding: 1rem;
 }
@@ -55,20 +59,26 @@ footer {
 p ~ p {
     margin-top: 1rem;
 }
-#register-form > label ~ label {
+#register-form > label ~ span {
+    grid-column-start: 2;
+}
+/*#register-form > span ~ label {
     display: block;
     margin-top: 1rem;
+}
+#register-form > label > span:last-child {
+    display: block;
 }
 #register-form-about-you {
     display: inline-block;
     vertical-align: top;
 }
+#register-form-dating-preference {
+    display: inline-block;
+}
 #register-form-submit {
     margin-top: 1rem;
-}
-footer > span {
-    font-style: italic;
-}
+}*/
 
 /* User agent stylesheet overrides */
 h1, h2, p {
