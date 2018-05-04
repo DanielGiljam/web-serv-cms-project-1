@@ -33,10 +33,10 @@ class AppStateCentral {
         {
             if (isset($_GET['login-request']) && $_GET['login-request'] === 'true') {
                 loginClient();
-                header('Location: ' . getContextRoot());
+                redirect('');
             } else if (isset($_GET['terminate-session']) && $_GET['terminate-session'] === 'true') {
                 logoutClient();
-                header('Location: ' . getContextRoot());
+                redirect('');
             } else {
                 $this->client_id = checkClientId();
             }
@@ -98,9 +98,9 @@ class AppStateCentral {
                     $this->page_specific_properties['no_such_user'] = true;
                 }
             } else if ($this->client_id !== '0') {
-                header('Location: ' . getContextRoot() . 'person/' . Person::getNameUrlEncoded($this->client_id));
+                redirect('person/' . Person::getNameUrlEncoded($this->client_id));
             } else {
-                header('Location: ' . getContextRoot());
+                redirect('');
             }
 
             // all person page property "sets" within following if -statement are exclusive to logged in clients
@@ -182,7 +182,7 @@ class AppStateCentral {
                         $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
                     }
                 } else {
-                    header('Location: ' . getContextRoot());
+                    redirect('');
                 }
             }
         }

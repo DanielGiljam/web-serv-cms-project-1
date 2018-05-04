@@ -39,13 +39,7 @@ class Person {
                                             $dating_preference)
     {
         $id = "unhex(replace(UUID(),'-',''))";
-        $name_url_encoded = nameUrlEncoder($name);
-        $i = 2;
-        while (!self::verifyNameUrlEncoded($name_url_encoded)) {
-            if ($i === 2) $name_url_encoded .= '-' . $i;
-            else $name_url_encoded = preg_replace('/-' . ($i - 1) . '$/i', '-' . $i, $name_url_encoded);
-            $i++;
-        }
+        $name_url_encoded = self::nameUrlEncoder($name);
         createPerson([  $id,
                         "'" . $name . "'",
                         "'" . $name_url_encoded . "'",
@@ -115,6 +109,35 @@ class Person {
         } else {
             return '>corresponding-name<'; // TODO: make this function return a real value
         }
+    }
+
+    private static function nameUrlEncoder($name)
+    {
+        $name_url_encoded = strtolower($name);
+        $name_url_encoded = preg_replace('/ /i', '-', $name_url_encoded);
+        $name_url_encoded = preg_replace('/\'/i', '', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[àáâãäåæ]/i', 'a', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[ç]/i', 'c', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[èéêëŒ]/i', 'e', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[ìíîï]/i', 'i', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[ðñòóôõöøœ]/i', 'o', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[ùúûü]/i', 'u', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[ýÿŸ]/i', 'y', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[þ]/i', 'p', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[Šš]/i', 's', $name_url_encoded);
+        $name_url_encoded = preg_replace('/[ƒ]/i', 'f', $name_url_encoded);
+        return self::determineNameUrlEncodedIteration($name_url_encoded);
+    }
+
+    private static function determineNameUrlEncodedIteration($name_url_encoded)
+    {
+        $i = 2;
+        while (!self::verifyNameUrlEncoded($name_url_encoded)) {
+            if ($i === 2) $name_url_encoded .= '-' . $i;
+            else $name_url_encoded = preg_replace('/-' . ($i - 1) . '$/i', '-' . $i, $name_url_encoded);
+            $i++;
+        }
+        return $name_url_encoded;
     }
 
     private static function verifyNameUrlEncoded($name_url_encoded)
