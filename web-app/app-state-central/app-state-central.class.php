@@ -145,43 +145,49 @@ class AppStateCentral {
         private function setRegisterPageProperties()
     {
         if (isset($_GET['registration-submitted']) && $_GET['registration-submitted'] === 'true') {
-            $verify_post =  isset($_POST['name']) &&
-                isset($_POST['email']) &&
-                isset($_POST['password']) &&
-                isset($_POST['confirm_password']) &&
-                isset($_POST['zip_code']) &&
-                isset($_POST['about_you']) &&
-                isset($_POST['annual_salary']) &&
-                (isset($_POST['dating_preference_male']) ||
-                    isset($_POST['dating_preference_female']) ||
-                    isset($_POST['dating_preference_other']));
-            if ($verify_post) {
-                $password = $_POST['password'];
-                $confirm_password = $_POST['confirm_password'];
-                $password_hash = ($password === $confirm_password) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
-                if (isset($password_hash)) {
-                    $name = $_POST['name'];
-                    $email = $_POST['email'];
-                    $zip_code = $_POST['zip_code'];
-                    $about_you = $_POST['about_you'];
-                    $annual_salary = $_POST['annual_salary'];
-                    if (isset($_POST['dating_preference_male'])) $dp_0 = 4;
-                    else $dp_0 = 0;
-                    if (isset($_POST['dating_preference_female'])) $dp_1 = 3;
-                    else $dp_1 = 0;
-                    if (isset($_POST['dating_preference_other'])) $dp_2 = 2;
-                    else $dp_2 = 0;
-                    $dating_preference = $dp_0 + $dp_1 + $dp_2;
-                    Person::createPerson(   $name,
-                        $password_hash,
-                        $email,
-                        $zip_code,
-                        $about_you,
-                        $annual_salary,
-                        $dating_preference);
-                    $this->page_specific_properties['reg-sub-finish-code'] = 0;
-                    $this->page_title_location = 'Registration Successful';
-                    $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
+            if (isset($_POST)) {
+                $verify_post =  isset($_POST['name']) &&
+                                isset($_POST['email']) &&
+                                isset($_POST['password']) &&
+                                isset($_POST['confirm_password']) &&
+                                isset($_POST['zip_code']) &&
+                                isset($_POST['about_you']) &&
+                                isset($_POST['annual_salary']) &&
+                               (isset($_POST['dating_preference_male']) ||
+                                isset($_POST['dating_preference_female']) ||
+                                isset($_POST['dating_preference_other']));
+                if ($verify_post) {
+                    $password = $_POST['password'];
+                    $confirm_password = $_POST['confirm_password'];
+                    $password_hash = ($password === $confirm_password) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
+                    if (isset($password_hash)) {
+                        $name = $_POST['name'];
+                        $email = $_POST['email'];
+                        $zip_code = $_POST['zip_code'];
+                        $about_you = $_POST['about_you'];
+                        $annual_salary = $_POST['annual_salary'];
+                        if (isset($_POST['dating_preference_male'])) $dp_0 = 4;
+                        else $dp_0 = 0;
+                        if (isset($_POST['dating_preference_female'])) $dp_1 = 3;
+                        else $dp_1 = 0;
+                        if (isset($_POST['dating_preference_other'])) $dp_2 = 2;
+                        else $dp_2 = 0;
+                        $dating_preference = $dp_0 + $dp_1 + $dp_2;
+                        Person::createPerson(   $name,
+                                                $password_hash,
+                                                $email,
+                                                $zip_code,
+                                                $about_you,
+                                                $annual_salary,
+                                                $dating_preference);
+                        $this->page_specific_properties['reg-sub-finish-code'] = 0;
+                        $this->page_title_location = 'Registration Successful';
+                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
+                    } else {
+                        $this->page_specific_properties['reg-sub-finish-code'] = 1;
+                        $this->page_title_location = 'Registration Failed';
+                        $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
+                    }
                 } else {
                     $this->page_specific_properties['reg-sub-finish-code'] = 1;
                     $this->page_title_location = 'Registration Failed';
