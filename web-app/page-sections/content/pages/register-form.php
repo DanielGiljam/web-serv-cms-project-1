@@ -9,15 +9,13 @@
     <input type="text"
            name="name"
            value=""
-           onfocus=""
            onblur="check_name_input(this)" >
     <span id="reg-form-name-error"></span>
 
     <label>Email:</label>
-    <input type="email"
+    <input type="text"
            name="email"
            value=""
-           onfocus=""
            onblur="validate_email(this)">
     <span id="reg-form-email-error"></span>
 
@@ -41,7 +39,6 @@
     <input type="text"
            name="zip_code"
            value=""
-           onfocus=""
            onblur="check_zip_code_input(this)">
     <span id="reg-form-zc-error"></span>
 
@@ -56,17 +53,16 @@
     <input type="text"
            name="annual_salary"
            value=""
-           onfocus=""
            onblur="check_annual_salary_input(this)">
     <span id="reg-form-as-error"></span>
 
     <label>Dating Preference:</label>
     <span id="register-form-dating-preference">
-           <input type="checkbox"
-                  name="dating_preference_male"
-                  value="dating_preference_male"
-                  id="dating-preference-male"
-                  onclick="check_dating_preference()">Male
+        <input type="checkbox"
+               name="dating_preference_male"
+               value="dating_preference_male"
+               id="dating-preference-male"
+               onclick="check_dating_preference()">Male
 
         <input type="checkbox"
                name="dating_preference_female"

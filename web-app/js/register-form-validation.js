@@ -1,12 +1,12 @@
 //Global variables need
-var check_name= false;
-var check_email= false;
-var check_password= false;
-var check_confirm_password = false;
-var check_zip_code = false;
-var check_about_you = false;
-var check_annual_salary = false;
-var check_d_preference = false;
+let check_name = false;
+let check_email = false;
+let check_password = false;
+let check_confirm_password = false;
+let check_zip_code = false;
+let check_about_you = false;
+let check_annual_salary = false;
+let check_d_preference = false;
 
 //Checks the name input field in register form
 function check_name_input(input){
@@ -28,7 +28,7 @@ function check_name_input(input){
 //Checks e-mail input field in register form
 function validate_email(input){
     check_email = false;
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})$/;
     if(input.value.match(mailformat))
     {
         input.style.boxShadow = '0 0 5px green';
@@ -70,7 +70,7 @@ function check_password_input(input){
 //Checks confirm password input field in register form
 function confirm_password_input(input){
     check_confirm_password = false;
-    var confirm_password = document.getElementById("reg-form-password-id").value;
+    const confirm_password = document.getElementById("reg-form-password-id").value;
     //document.getElementById("reg-form-cp-error").innerText = confirm_password;
     if(input.value === confirm_password){
         check_confirm_password = true;
@@ -92,8 +92,7 @@ function check_zip_code_input(input){
         /[\,\.\;\:\-\_\'\*\¨\^\´\`\`\?\=\)\(\/\&\%\€\#\"\!\§\)]/gi, '');
 
 
-
-    var regex =validate_zip_code_input(input.value);
+    const regex = validate_zip_code_input(input.value);
     if(regex){
         input.style.boxShadow = '0 0 5px green';
         check_zip_code = true;
@@ -106,8 +105,8 @@ function check_zip_code_input(input){
     return check_zip_code;
 }
 function validate_zip_code_input(input){
-    var result = false;
-    var zip_code_check = /\b\d{5}\b/g;
+    let result = false;
+    const zip_code_check = /\b\d{5}\b/g;
     if(input.match(zip_code_check)){
         result = true;
     }
@@ -137,8 +136,8 @@ function check_about_you_input(input){
 function check_annual_salary_input(input){
     check_annual_salary = false;
     input.value = input.value.trim().replace(
-        /[\,\.\;\:\-\_\'\*\¨\^\´\`\`\?\=\)\(\/\&\%\€\#\"\!\§\)]/gi, '');
-    var regex = validate_annual_salary(input.value);
+        /[,.;:\-_'*¨^´`?=)(\/&%€#"!§]/gi, '');
+    const regex = validate_annual_salary(input.value);
     if(regex){
         input.style.boxShadow = '0 0 5px green';
         check_annual_salary = true;
@@ -150,9 +149,11 @@ function check_annual_salary_input(input){
     unlock_submit();
     return check_annual_salary;
 }
+
+
 function validate_annual_salary(input){
-    var result = false;
-    var annual_salary_check = /\d/g;
+    let result = false;
+    const annual_salary_check = /\d/g;
     if(input.match(annual_salary_check)){
         result = true;
     }
@@ -163,9 +164,9 @@ function validate_annual_salary(input){
 //Checks dating preference input field in register form
 function check_dating_preference(){
     check_d_preference = false;
-    var male_checkbox =document.getElementById("dating-preference-male");
-    var female_checkbox =document.getElementById("dating-preference-female");
-    var other_checkbox =document.getElementById("dating-preference-other");
+    const male_checkbox = document.getElementById("dating-preference-male");
+    const female_checkbox = document.getElementById("dating-preference-female");
+    const other_checkbox = document.getElementById("dating-preference-other");
     if(male_checkbox.checked === true ||
         female_checkbox.checked === true ||
         other_checkbox.checked === true){
@@ -176,13 +177,14 @@ function check_dating_preference(){
 }
 
 
-
-
 function unlock_submit(){
-    if(check_name && check_email && check_password && check_confirm_password &&
-        check_zip_code && check_about_you && check_annual_salary && check_d_preference) {
-        document.getElementById("register-form-submit").disabled = false;
-    } else {
-        document.getElementById("register-form-submit").disabled = true;
-    }
+    document.getElementById("register-form-submit").disabled =
+        !(  check_name &&
+            check_email &&
+            check_password &&
+            check_confirm_password &&
+            check_zip_code &&
+            check_about_you &&
+            check_annual_salary &&
+            check_d_preference  );
 }
