@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/print.css" media="print" />
 <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/style.css" media="screen, projection" />
 <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() . $app_state_central->getThemeHref() ?>" />
+<script src="<?php echo getContextRoot() ?>js/register-form-validation.js"></script>
 
 <?php echo $app_state_central->getScriptTags() ?>
 
