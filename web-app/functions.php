@@ -37,9 +37,14 @@ function processRegSub()
 {
     include 'miscellaneous/reg-sub-processing.php';
     if (validatePost()) {
-        extractPostAndCreatePerson();
-        return 0;
+        if (emailIsFree()) {
+            extractPostAndCreatePerson();
+            return 0;
+        } else {
+            return 2;
+        }
     } else {
+        logFailedRegistrationAttempt();
         return 1;
     }
 }

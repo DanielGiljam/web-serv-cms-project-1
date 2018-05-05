@@ -4,7 +4,7 @@
 #
 # This object represents a person.
 
-include 'person-property.abstract.php';
+include 'personproperty.abstract.php';
 
 class Person {
 

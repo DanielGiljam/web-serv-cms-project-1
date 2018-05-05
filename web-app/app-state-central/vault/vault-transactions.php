@@ -96,3 +96,16 @@ function verifyNameUrlEncoded($name_url_encoded)
         return $verify_name_url_encoded_executable->fetch();
     }
 }
+
+function verifyEmail($email)
+{
+    $verify_email_executable = Vault::getConnection()->read(['email'], ['users_main'], "`email` = ?");
+    $verify_email_executable->execute([$email]);
+    return $verify_email_executable->fetch();
+}
+
+function logFRA($remote_addr, $event)
+{
+    $log_fra_executable = Vault::getConnection()->create('anomalities_log', ['remote_addr', 'event'], ["'" . $remote_addr . "'", "'" . $event . "'"]);
+    $log_fra_executable->execute();
+}

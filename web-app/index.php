@@ -12,7 +12,7 @@ include 'functions.php';
 urlCleanup();
 
 // instantiate AppStateCentral...
-include 'app-state-central/app-state-central.class.php';
+include 'app-state-central/appstatecentral.class.php';
 $app_state_central = new AppStateCentral;
 
 // initialize page loading...

@@ -27,11 +27,11 @@ abstract class PersonProperty {
 
 }
 
-include 'person-properties/id.class.php';
-include 'person-properties/name.class.php';
-include 'person-properties/name-url-encoded.class.php';
-include 'person-properties/email.class.php';
-include 'person-properties/zip-code.class.php';
-include 'person-properties/about-you.class.php';
-include 'person-properties/annual-salary.class.php';
-include 'person-properties/dating-preference.class.php';
+include 'personproperties/id.class.php';
+include 'personproperties/name.class.php';
+include 'personproperties/nameurlencoded.class.php';
+include 'personproperties/email.class.php';
+include 'personproperties/zipcode.class.php';
+include 'personproperties/aboutyou.class.php';
+include 'personproperties/annualsalary.class.php';
+include 'personproperties/datingpreference.class.php';

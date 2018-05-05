@@ -23,7 +23,7 @@ switch ($page_specific_properties[0]) {
 
     case 'register':
 
-        include 'pages/register.php';
+        include 'pages/register/register.php';
         break;
 
     case 'forgot-password':

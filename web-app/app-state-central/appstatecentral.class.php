@@ -78,17 +78,21 @@ class AppStateCentral {
 
         private function setScriptTags()
         {
-            $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script><script src="' . getContextRoot() . 'js/go-to-logout.js"></script>';
+            $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script><script src="' . getContextRoot() . 'js/log-out.js"></script>';
+            $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/regisdfaffafater-form-validation.js"></script>';
             switch ($this->page_specific_properties[0]) {
                 case 'person':
-                    $this->script_tags = $login_logout_related_tags;
+                    $this->script_tags .= $login_logout_related_tags;
                     break;
                 case 'register':
+                    if (!isset($this->page_specific_properties['reg-sub-finish-code'])) {
+                        $this->script_tags .= $reg_form_related_tags;
+                    }
                     break;
                 case 'forgot-password':
                     break;
                 default:
-                    $this->script_tags = $login_logout_related_tags;
+                    $this->script_tags .= $login_logout_related_tags;
                     break;
             }
         }
