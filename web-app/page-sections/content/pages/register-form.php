@@ -16,24 +16,24 @@
     <input type="text"
            name="email"
            value=""
-           onblur="validate_email(this)">
+           onblur="check_email_input(this)">
     <span id="reg-form-email-error"></span>
 
     <label>Password:</label>
-    <input type="password"
+    <input id="reg-form-password"
+           type="password"
            name="password"
-           id="reg-form-password-id"
            value=""
-           onblur="check_password_input(this)">
+           onblur="check_password_input()">
     <span id="reg-form-password-error"></span>
 
     <label>Confirm Password:</label>
-    <input  type="password"
-            name="confirm_password"
-            value=""
-            id="reg-form-cp-id"
-            onblur="confirm_password_input(this)" disabled>
-    <span id="reg-form-cp-error"></span>
+    <input id="reg-form-confirm-password"
+           type="password"
+           name="confirm_password"
+           value=""
+           onblur="check_password_input()">
+    <span id="reg-form-confirm-password-error"></span>
 
     <label>ZIP Code:</label>
     <input type="text"
@@ -57,24 +57,24 @@
     <span id="reg-form-as-error"></span>
 
     <label>Dating Preference:</label>
-    <span id="register-form-dating-preference">
-        <input type="checkbox"
+    <div id="register-form-dating-preference">
+        <input id="dating-preference-male"
+               type="checkbox"
                name="dating_preference_male"
                value="dating_preference_male"
-               id="dating-preference-male"
-               onclick="check_dating_preference()">Male
+               onclick="check_dating_preference_input()">Male
 
-        <input type="checkbox"
+        <input id="dating-preference-female"
+               type="checkbox"
                name="dating_preference_female"
                value="dating_preference_female"
-               id="dating-preference-female"
-               onclick="check_dating_preference()">Female
+               onclick="check_dating_preference_input()">Female
 
-        <input type="checkbox"
+        <input id="dating-preference-other"
+               type="checkbox"
                name="dating_preference_other"
                value="dating_preference_other"
-               id="dating-preference-other"
-               onclick="check_dating_preference()">Other</span>
+               onclick="check_dating_preference_input()">Other</div>
     <span id="reg-form-dp-error"></span>
 
     <input id="register-form-submit" type="submit" name="register-form-submit" value="Register" disabled>

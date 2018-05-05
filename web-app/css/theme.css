@@ -18,7 +18,11 @@ header {
 main {
     background-color: white;
 }
-#register-form > label > span:last-child {
+#register-form > input ~ span {
+    color: red;
+    font-style: italic;
+}
+#register-form-dating-preference ~ span {
     color: red;
     font-style: italic;
 }

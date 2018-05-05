@@ -10,6 +10,11 @@ function getContextRoot()
     return '/web-serv-cms-project-1/';
 }
 
+function redirect($path) {
+    header('Location: ' . getContextRoot() . $path);
+    release();
+}
+
 function initialize() 
 {
     ob_start('ob_gzhandler');
@@ -28,9 +33,15 @@ function urlCleanup()
     include 'miscellaneous/url-cleanup.php';
 }
 
-function redirect($path) {
-    header('Location: ' . getContextRoot() . $path);
-    release();
+function processRegSub()
+{
+    include 'miscellaneous/reg-sub-processing.php';
+    if (validatePost()) {
+        extractPostAndCreatePerson();
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 // See "all-in-one-seo-pack.example.html" in the miscellaneous folder for help on this one

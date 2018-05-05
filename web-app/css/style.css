@@ -59,7 +59,10 @@ footer {
 p ~ p {
     margin-top: 1rem;
 }
-#register-form > label ~ span {
+#register-form > input ~ span {
+    grid-column-start: 2;
+}
+#register-form-dating-preference ~ span {
     grid-column-start: 2;
 }
 /*#register-form > span ~ label {
