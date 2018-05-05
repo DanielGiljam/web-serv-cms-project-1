@@ -13,7 +13,9 @@
            name="name"
            value=""
            onblur="check_name_input(this)" >
-    <span id="reg-form-name-error"></span>
+    <span id="reg-form-name-error-1.1"></span>
+    <span id="reg-form-name-error-1.2"></span>
+    <span id="reg-form-name-error-2"></span>
 
     <label for="reg-form-email">Email:</label>
     <input id="reg-form-email"
