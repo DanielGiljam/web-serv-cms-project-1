@@ -1,3 +1,3 @@
-function goToLogout() {
+function goToLogOut() {
     // TODO: make this function
 }

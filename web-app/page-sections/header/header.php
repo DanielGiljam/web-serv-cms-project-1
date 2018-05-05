@@ -41,8 +41,8 @@
 <?php
 
     if ($app_state_central->getPageSpecificProperties()[0] === 'person' || $app_state_central->getPageSpecificProperties()[0] === 'feed') {
-        if ($app_state_central->getClientId() !== '0') include 'header-elements/your-page-button.php';
-        else include 'header-elements/login-button.php';
+        if ($app_state_central->getClientId() !== '0') include 'header-elements/log-out-button.php';
+        else include 'header-elements/log-in-button.php';
     }
 
 ?>

@@ -173,7 +173,7 @@ function set_red_password_borders(boolean) {
 
 
 function unlock_submit(){
-    document.getElementById("register-form-submit").disabled =
+    document.getElementById("reg-form-submit").disabled =
         !(  check_name &&
             check_email &&
             check_password &&

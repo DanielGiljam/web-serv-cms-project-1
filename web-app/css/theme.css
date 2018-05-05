@@ -8,17 +8,17 @@ header {
 #header-buttons > a {
     color: #367beb;
 }
-#login-form {
+#log-in-form {
     background-color: #444444;
     color: white;
 }
-#login-form > a {
+#log-in-form > a {
     color: cornflowerblue;
 }
 main {
     background-color: white;
 }
-#register-form > input ~ span {
+#reg-form > input ~ span {
     color: red;
     font-style: italic;
 }

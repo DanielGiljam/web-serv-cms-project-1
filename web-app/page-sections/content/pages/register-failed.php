@@ -1,6 +1,8 @@
 <?php
 
-// TODO: comment this file
+# REGISTRATION FAILED
+#
+# If registration failed, this page content is shown.
 
 ?>
 

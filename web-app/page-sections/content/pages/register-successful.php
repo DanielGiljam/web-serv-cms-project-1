@@ -1,6 +1,8 @@
 <?php
 
-// TODO: comment this file
+# REGISTRATION SUCCESSFUL
+#
+# If registration was successful, this page content is shown.
 
 ?>
 

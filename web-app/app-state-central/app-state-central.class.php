@@ -78,7 +78,7 @@ class AppStateCentral {
 
         private function setScriptTags()
         {
-            $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-login-form.js"></script><script src="' . getContextRoot() . 'js/go-to-logout.js"></script>';
+            $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script><script src="' . getContextRoot() . 'js/go-to-logout.js"></script>';
             switch ($this->page_specific_properties[0]) {
                 case 'person':
                     $this->script_tags = $login_logout_related_tags;

@@ -35,7 +35,7 @@ header::after {
     align-self: end;
     justify-self: end;
 }
-#login-form {
+#log-in-form {
     padding: 0.75rem 0.5rem;
     text-align: right;
 }
@@ -43,7 +43,7 @@ main {
     min-height: 8rem;
     padding: 1rem;
 }
-#register-form {
+#reg-form {
     display: grid;
     grid-template-columns: max-content auto;
 }
@@ -52,36 +52,19 @@ footer {
 }
 
 /* Tweaks */
-#login-form > a {
+#log-in-form > a {
     display: block;
     margin-top: 0.5rem;
 }
 p ~ p {
     margin-top: 1rem;
 }
-#register-form > input ~ span {
+#reg-form > input ~ span {
     grid-column-start: 2;
 }
 #register-form-dating-preference ~ span {
     grid-column-start: 2;
 }
-/*#register-form > span ~ label {
-    display: block;
-    margin-top: 1rem;
-}
-#register-form > label > span:last-child {
-    display: block;
-}
-#register-form-about-you {
-    display: inline-block;
-    vertical-align: top;
-}
-#register-form-dating-preference {
-    display: inline-block;
-}
-#register-form-submit {
-    margin-top: 1rem;
-}*/
 
 /* User agent stylesheet overrides */
 h1, h2, p {
