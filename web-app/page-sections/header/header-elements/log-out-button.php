@@ -9,7 +9,7 @@
 
 <div id="header-buttons">
     <a href="<?php echo getContextRoot() . 'person' ?>">My page</a>
-    <button onclick=goToLogOut()>Log out</button>
+    <a href="<?php echo getContextRoot() . 'logout' ?>">Log out</a>
 </div>
 
 </div>

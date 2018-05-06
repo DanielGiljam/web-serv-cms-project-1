@@ -17,12 +17,13 @@ function checkClientId()
 
 function loginClient()
 {
-    if (isset($_POST) && isset($_POST['email']) && isset($_POST['password'])) {
-        $password_hash = Person::getPasswordHash($_POST['email']);
-        if (password_verify($_POST['password'], $password_hash)) {
-            $_SESSION['id'] = true;
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $password_hash_and_id = Person::getPasswordHashAndId($_POST['email']);
+        if (isset($password_hash_and_id) && password_verify($_POST['password'], $password_hash_and_id['password_hash'])) {
+            $_SESSION['id'] = createSessionId($password_hash_and_id['id']);
+            return true;
         } else {
-            $_SESSION['id'] = false;
+            return false;
         }
         // TODO: bouncer.php's loginClient() -function
         // 1. Start session based off POSTed data

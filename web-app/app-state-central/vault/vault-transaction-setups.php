@@ -27,9 +27,9 @@ function setUpGetNameUrlEncodedWithId ($id)
     return $name_url_encoded_executable->fetch();
 }
 
-function setUpGetPasswordHashWithEmail ($email)
+function setUpGetPasswordHashAndIdWithEmail ($email)
 {
-    $password_hash_executable = Vault::getConnection()->read(['password_hash'], ['users_main'], "`email` = ?");
+    $password_hash_executable = Vault::getConnection()->read(['id', 'password_hash'], ['users_main'], "`email` = ?");
     $password_hash_executable->execute([$email]);
     return $password_hash_executable->fetch();
 }

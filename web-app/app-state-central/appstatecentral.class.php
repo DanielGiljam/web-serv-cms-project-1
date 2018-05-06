@@ -33,8 +33,16 @@ class AppStateCentral {
         private function setClientId()
         {
             if (isset($_GET['login-request']) && $_GET['login-request'] === 'true') {
-                loginClient();
-                redirect('');
+                if (isset($_POST)) {
+                    if (!loginClient()) {
+                        $this->page_specific_properties['wrong_email_or_password'] = $_POST['email'];
+                        $this->client_id = checkClientId();
+                    } else {
+                        redirect('');
+                    }
+                } else {
+                    redirect('');
+                }
             } else if (isset($_GET['terminate-session']) && $_GET['terminate-session'] === 'true') {
                 logoutClient();
                 redirect('');

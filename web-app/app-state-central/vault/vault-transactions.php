@@ -51,7 +51,7 @@ function getNameUrlEncodedWithId($id)
 
 $password_hash_executable = null;
 
-function getPasswordHashWithEmail($email)
+function getPasswordHashAndIdWithEmail($email)
 {
     if (!isset($password_hash_executable)) {
         return setUpGetNameUrlEncodedWithId($email);

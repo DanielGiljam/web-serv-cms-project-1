@@ -95,9 +95,9 @@ class Person {
         else return false;
     }
 
-    public static function getPasswordHash($email)
+    public static function getPasswordHashAndId($email)
     {
-        $password_hash = getPasswordHashWithEmail($email);
+        $password_hash = getPasswordHashAndIdWithEmail($email);
         if (isset($password_hash)) return $password_hash;
         else return false;
     }
