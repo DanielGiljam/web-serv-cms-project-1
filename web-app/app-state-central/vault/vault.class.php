@@ -36,7 +36,7 @@ class Vault {
 
     public function create($insert_into, $columns, $values)
     {
-        $command = "INSERT INTO `" . $insert_into . "` (";
+        $command = "INSERT INTO `" . $insert_into[0] . "` (";
         foreach ($columns as $c) {
             $command .= "`" . $c . "`";
             if ($c !== $columns[count($columns) - 1]) $command .= ",";
@@ -44,7 +44,20 @@ class Vault {
         $command .= ") VALUES (";
         $i = 0;
         foreach ($values as $v) {
-            $command .= $v;
+            switch ($v) {
+                case 'UNIQUE_ID':
+                    $command .= "unhex(replace(UUID(),'-',''))";
+                    break;
+                case 'EXPIRATION_TIMESTAMP':
+                    $command .= "addtime(now(),'02:00:00')";
+                    break;
+                case 'CURRENT_TIMESTAMP':
+                    $command .= "now()";
+                    break;
+                default:
+                    $command .= "'" . $v . "'";
+                    break;
+            }
             if ($v !== $values[count($values) - 1]) $command .= ",";
             else $command .= ")";
             $i++;
@@ -64,7 +77,7 @@ class Vault {
             $command .= "`" . $f . "`";
             if ($f !== $from[count($from) - 1]) $command .= ",";
         }
-        $command .= " WHERE " . $where;
+        $command .= " WHERE " . $where[0];
         return $this->handler->prepare($command);
     }
 

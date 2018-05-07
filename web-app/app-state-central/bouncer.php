@@ -18,9 +18,10 @@ function checkClientId()
 function loginClient()
 {
     if (isset($_POST['email']) && isset($_POST['password'])) {
-        $password_hash_and_id = Person::getPasswordHashAndId($_POST['email']);
-        if (isset($password_hash_and_id) && password_verify($_POST['password'], $password_hash_and_id['password_hash'])) {
-            $_SESSION['id'] = createSessionId($password_hash_and_id['id']);
+        $password_hash = Person::getPasswordHash($_POST['email']);
+        $id = Person::getId(new Email($_POST['email']));
+        if (isset($password_hash) && password_verify($_POST['password'], $password_hash['password_hash'])) {
+            $_SESSION['id'] = createSession($id);
             return true;
         } else {
             return false;

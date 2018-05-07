@@ -21,19 +21,31 @@ function getPerson($id)
 
 function createPerson($person_data)
 {
-    $create_person_executable = Vault::getConnection()->create('users_main', ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], $person_data);
+    $create_person_executable = Vault::getConnection()->create(['users_main'], ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], $person_data);
     $create_person_executable->execute();
 }
 
-$id_executable = null;
+$id_with_name_url_encoded_executable = null;
 
 function getIdWithNameUrlEncoded($name_url_encoded)
 {
-    if (!isset($id_executable)) {
+    if (!isset($id_with_name_url_encoded_executable)) {
         return setUpGetIdWithNameUrlEncoded($name_url_encoded);
     } else {
-        $id_executable->execute([$name_url_encoded]);
-        return $id_executable->fetch();
+        $id_with_name_url_encoded_executable->execute([$name_url_encoded]);
+        return $id_with_name_url_encoded_executable->fetch();
+    }
+}
+
+$id_with_email_executable = null;
+
+function getIdWithEmail($email)
+{
+    if (!isset($id_with_email_executable)) {
+        return setUpGetIdWithNameUrlEncoded($email);
+    } else {
+        $id_with_email_executable->execute([$email]);
+        return $id_with_email_executable->fetch();
     }
 }
 
@@ -51,7 +63,7 @@ function getNameUrlEncodedWithId($id)
 
 $password_hash_executable = null;
 
-function getPasswordHashAndIdWithEmail($email)
+function getPasswordHashWithEmail($email)
 {
     if (!isset($password_hash_executable)) {
         return setUpGetNameUrlEncodedWithId($email);
@@ -99,13 +111,22 @@ function verifyNameUrlEncoded($name_url_encoded)
 
 function verifyEmail($email)
 {
-    $verify_email_executable = Vault::getConnection()->read(['email'], ['users_main'], "`email` = ?");
+    $verify_email_executable = Vault::getConnection()->read(['email'], ['users_main'], ["`email` = ?"]);
     $verify_email_executable->execute([$email]);
     return $verify_email_executable->fetch();
 }
 
 function logFRA($remote_addr, $event)
 {
-    $log_fra_executable = Vault::getConnection()->create('anomalities_log', ['remote_addr', 'event'], ["'" . $remote_addr . "'", "'" . $event . "'"]);
+    $log_fra_executable = Vault::getConnection()->create(['anomalities_log'], ['remote_addr', 'event'], [$remote_addr, $event]);
     $log_fra_executable->execute();
+}
+
+function createSession($id)
+{
+    $create_session_executable = Vault::getConnection()->create(['sessions_log'], ['session_id', 'user_id', 'remote_addr', 'session_expiration'], ['UNIQUE_ID', $id, $_SERVER['REMOTE_ADDR'], 'EXPIRATION_TIMESTAMP']);
+    $create_session_executable->execute();
+    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`id` = ? & `session_end` = NULL"]);
+    $read_session_id_executable->execute([$id]);
+    return $read_session_id_executable->fetch();
 }

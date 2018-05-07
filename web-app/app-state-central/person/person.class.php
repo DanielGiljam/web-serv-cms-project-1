@@ -38,17 +38,17 @@ class Person {
                                             $annual_salary,
                                             $dating_preference)
     {
-        $id = "unhex(replace(UUID(),'-',''))";
+        $id = 'UNIQUE_ID';
         $name_url_encoded = self::nameUrlEncoder($name);
         createPerson([  $id,
-                        "'" . $name . "'",
-                        "'" . $name_url_encoded . "'",
-                        "'" . $password_hash . "'",
-                        "'" . $email . "'",
-                        "'" . $zip_code . "'",
-                        "'" . $about_you . "'",
-                        "'" . $annual_salary . "'",
-                        "'" . $dating_preference . "'"]);
+                        $name,
+                        $name_url_encoded,
+                        $password_hash,
+                        $email,
+                        $zip_code,
+                        $about_you,
+                        $annual_salary,
+                        $dating_preference]);
     }
 
     public static function getPerson(PersonProperty $property)
@@ -61,7 +61,7 @@ class Person {
             case 'name':
                 return false;
             case 'name_url_encoded':
-                $id = self::getId($property->value());
+                $id = self::getId($property);
                 if ($id === false) $id = null;
                 break;
             case 'email':
@@ -81,11 +81,20 @@ class Person {
         else return false;
     }
 
-    public static function getId($name_url_encoded)
+    public static function getId(PersonProperty $name_url_encoded_or_email)
     {
-        $id = getIdWithNameUrlEncoded($name_url_encoded)['id'];
-        if (isset($id)) return $id;
-        else return false;
+        switch ($name_url_encoded_or_email->name()) {
+            case 'name_url_encoded':
+                $id = getIdWithNameUrlEncoded($name_url_encoded_or_email->value())['id'];
+                if (isset($id)) return $id;
+                else return false;
+            case 'email':
+                $id = getIdWithEmail($name_url_encoded_or_email->value())['id'];
+                if (isset($id)) return $id;
+                else return false;
+            default:
+                return false;
+        }
     }
 
     public static function getNameUrlEncoded($id)
@@ -95,9 +104,9 @@ class Person {
         else return false;
     }
 
-    public static function getPasswordHashAndId($email)
+    public static function getPasswordHash($email)
     {
-        $password_hash = getPasswordHashAndIdWithEmail($email);
+        $password_hash = getPasswordHashWithEmail($email);
         if (isset($password_hash)) return $password_hash;
         else return false;
     }
