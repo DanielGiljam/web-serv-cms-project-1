@@ -17,3 +17,4 @@
         <li>client accessing site from a broken web browser installation</li>
     </ul>
 </p>
+<a href="<?php echo getContextRoot() . 'index.php' ?>">back to start</a>

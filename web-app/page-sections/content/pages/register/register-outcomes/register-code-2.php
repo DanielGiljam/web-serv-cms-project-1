@@ -9,3 +9,4 @@
 ?>
 
 <p>This email is already registered.</p>
+<a href="<?php echo getContextRoot() . 'index.php' ?>">back to start</a>
