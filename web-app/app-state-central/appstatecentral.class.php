@@ -88,9 +88,11 @@ class AppStateCentral {
         {
             $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script><script src="' . getContextRoot() . 'js/log-out.js"></script>';
             $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/register-form-validation.js"></script>';
+            $google_maps_api = '<script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&callback=initMap"></script>';
             switch ($this->page_specific_properties[0]) {
                 case 'person':
-                    $this->script_tags .= $login_logout_related_tags;
+                    $this->script_tags .= $login_logout_related_tags . $google_maps_api;
                     break;
                 case 'register':
                     if (!isset($this->page_specific_properties['reg-sub-finish-code'])) {
