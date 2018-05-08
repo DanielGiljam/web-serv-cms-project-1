@@ -14,7 +14,7 @@
 
 </div>
 
-<form id="log-in-form" action="<?php echo getContextRoot() . 'login' ?>" method="post">
+<form id="log-in-form" style="display:none" action="<?php echo getContextRoot() . 'login' ?>" method="post">
     <label for="log-in-form-email">Email: </label><input id="log-in-form-email" type="email" name="email">
     <label for="log-in-form-password">Password: </label><input id="log-in-form-password" type="password" name="password">
     <input type="submit" value="Go!">
