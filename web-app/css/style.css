@@ -38,6 +38,7 @@ header::after {
 #log-in-form {
     padding: 0.75rem 0.5rem;
     text-align: right;
+    display: none;
 }
 input[type="text"], input[type="password"] {
     border: 1px solid gray;
