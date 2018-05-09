@@ -30,12 +30,8 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
     </ul>
 </p>
 
-    <div id="zip_code_geocoding"style="display:none"><?php echo $page_specific_properties['person']->get('zip_code')->value() ?></div>
+    <div id="zip-code-geocoding" style="display: none"><?php echo $page_specific_properties['person']->get('zip_code')->value() ?></div>
     <div id="map" style="width: 360px; height: 360px;" onload="initMap()"></div>
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&callback=initMap">
-    </script>
 <?php
 
 }
