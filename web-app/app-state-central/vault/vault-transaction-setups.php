@@ -61,3 +61,10 @@ function setUpVerifyNameUrlEncoded ($name_url_encoded)
     $verify_name_url_encoded_executable->execute([$name_url_encoded]);
     return $verify_name_url_encoded_executable->fetch();
 }
+
+function setUpAuthenticateSession ($session_id)
+{
+    $authenticate_session_executable = Vault::getConnection()->read(['user_id'], ['sessions_log'], ["`session_id` = ? & `session_end` = NULL"]);
+    $authenticate_session_executable->execute([$session_id]);
+    return $authenticate_session_executable->fetch();
+}
