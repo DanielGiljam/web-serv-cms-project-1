@@ -46,7 +46,7 @@ class Vault {
         foreach ($values as $v) {
             switch ($v) {
                 case 'UNIQUE_ID':
-                    $command .= "unhex(replace(UUID(),'-',''))";
+                    $command .= "UUID()";
                     break;
                 case 'EXPIRATION_TIMESTAMP':
                     $command .= "addtime(now(),'02:00:00')";
