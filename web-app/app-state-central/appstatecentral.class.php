@@ -34,8 +34,10 @@ class AppStateCentral {
         {
             if (isset($_GET['login-request']) && $_GET['login-request'] === 'true') {
                 if (isset($_POST)) {
+                    $this->page_specific_properties['weop_text'] .= 'At least it got here... (1) ';
                     if (!loginClient()) {
                         $this->page_specific_properties['wrong_email_or_password'] = $_POST['email'];
+                        $this->page_specific_properties['weop_text'] .= 'At least it got here... (2) ';
                         $this->client_id = checkClientId();
                     } else {
                         redirect('');
@@ -88,13 +90,7 @@ class AppStateCentral {
         {
             $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script><script src="' . getContextRoot() . 'js/log-out.js"></script>';
             $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/register-form-validation.js"></script>';
-<<<<<<< HEAD
-            $google_maps_api = '<script src="' . getContextRoot() . 'js/google-maps-api.js"></script>
-                                <script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script><script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=initMap"></script>';
-=======
-            $google_maps_api = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&callback=initMap"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script>';
->>>>>>> 057cefc310cb5eb9e0680a20f6dc60dafbc08d9a
+            $google_maps_api = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=initMap"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script>';
             switch ($this->page_specific_properties[0]) {
                 case 'person':
                     $this->script_tags .= $login_logout_related_tags . $google_maps_api;

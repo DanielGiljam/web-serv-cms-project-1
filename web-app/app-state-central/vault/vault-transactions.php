@@ -42,7 +42,7 @@ $id_with_email_executable = null;
 function getIdWithEmail($email)
 {
     if (!isset($id_with_email_executable)) {
-        return setUpGetIdWithNameUrlEncoded($email);
+        return setUpGetIdWithEmail($email);
     } else {
         $id_with_email_executable->execute([$email]);
         return $id_with_email_executable->fetch();
@@ -126,7 +126,7 @@ function createSession($id)
 {
     $create_session_executable = Vault::getConnection()->create(['sessions_log'], ['session_id', 'user_id', 'remote_addr', 'session_expiration'], ['UNIQUE_ID', $id, $_SERVER['REMOTE_ADDR'], 'EXPIRATION_TIMESTAMP']);
     $create_session_executable->execute();
-    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? & `session_end` = NULL"]);
+    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? && `session_end` = null"]);
     $read_session_id_executable->execute([$id]);
     return $read_session_id_executable->fetch();
 }
@@ -141,4 +141,9 @@ function authenticateSession($session_id)
         $authenticate_session_executable->execute([$session_id]);
         return $authenticate_session_executable->fetch();
     }
+}
+
+function sealSession ($session_id)
+{
+    // TODO: make this function!
 }
