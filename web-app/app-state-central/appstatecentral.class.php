@@ -90,7 +90,14 @@ class AppStateCentral {
         {
             $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script><script src="' . getContextRoot() . 'js/log-out.js"></script>';
             $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/register-form-validation.js"></script>';
+<<<<<<< HEAD
             $google_maps_api = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=initMap"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script>';
+=======
+
+
+            $google_maps_api = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=initMap"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script>';
+
+>>>>>>> d1ca395d186a95a0fe8a027db93f1655f8d9dff7
             switch ($this->page_specific_properties[0]) {
                 case 'person':
                     $this->script_tags .= $login_logout_related_tags . $google_maps_api;
