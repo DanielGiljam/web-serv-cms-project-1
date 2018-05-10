@@ -30,8 +30,18 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
     </ul>
 </p>
 
+<<<<<<< HEAD
+    <div id="zip_code_geocoding"style="display:none"><?php echo $page_specific_properties['person']->get('zip_code')->value() ?>, Finland</div>
+    <button id="poi" onclick="poi_map()">Take your date here:</button>
+    <div id="map" style="width: 360px; height: 360px;" onload="initMap()"></div>
+
+
+
+
+=======
     <div id="zip-code-geocoding" style="display: none"><?php echo $page_specific_properties['person']->get('zip_code')->value() ?></div>
     <div id="map" style="width: 360px; height: 360px;" onload="initMap()"></div>
+>>>>>>> 057cefc310cb5eb9e0680a20f6dc60dafbc08d9a
 <?php
 
 }
