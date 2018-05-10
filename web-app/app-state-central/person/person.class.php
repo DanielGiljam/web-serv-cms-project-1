@@ -104,9 +104,9 @@ class Person {
         else return false;
     }
 
-    public static function getPasswordHash($email)
+    public static function getPasswordHash(PersonProperty $email)
     {
-        $password_hash = getPasswordHashWithEmail($email);
+        $password_hash = getPasswordHashWithEmail($email->value())['password_hash'];
         if (isset($password_hash)) return $password_hash;
         else return false;
     }

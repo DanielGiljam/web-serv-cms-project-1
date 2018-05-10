@@ -126,7 +126,19 @@ function createSession($id)
 {
     $create_session_executable = Vault::getConnection()->create(['sessions_log'], ['session_id', 'user_id', 'remote_addr', 'session_expiration'], ['UNIQUE_ID', $id, $_SERVER['REMOTE_ADDR'], 'EXPIRATION_TIMESTAMP']);
     $create_session_executable->execute();
-    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`id` = ? & `session_end` = NULL"]);
+    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? & `session_end` = NULL"]);
     $read_session_id_executable->execute([$id]);
     return $read_session_id_executable->fetch();
+}
+
+$authenticate_session_executable = null;
+
+function authenticateSession($session_id)
+{
+    if (!isset($authenticate_session_executable)) {
+        return setUpAuthenticateSession($session_id);
+    } else {
+        $authenticate_session_executable->execute([$session_id]);
+        return $authenticate_session_executable->fetch();
+    }
 }
