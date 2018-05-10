@@ -15,9 +15,9 @@ function setUpGetPerson ($id)
 
 function setUpGetIdWithNameUrlEncoded ($name_url_encoded)
 {
-    $id_executable = Vault::getConnection()->read(['id'], ['users_main'], ["`name_url_encoded` = ?"]);
-    $id_executable->execute([$name_url_encoded]);
-    return $id_executable->fetch();
+    $id_with_name_url_encoded_executable = Vault::getConnection()->read(['id'], ['users_main'], ["`name_url_encoded` = ?"]);
+    $id_with_name_url_encoded_executable->execute([$name_url_encoded]);
+    return $id_with_name_url_encoded_executable->fetch();
 }
 
 function setUpGetIdWithEmail ($email)

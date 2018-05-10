@@ -23,7 +23,7 @@ function loginClient()
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $password_hash = Person::getPasswordHash(new Email($_POST['email']));
         $id = Person::getId(new Email($_POST['email']));
-        if (isset($password_hash)) {
+        if (isset($password_hash) && password_verify($_POST['password'], $password_hash)) {
             $_SESSION['id'] = createSession($id)['session_id'];
             return true;
         } else {
