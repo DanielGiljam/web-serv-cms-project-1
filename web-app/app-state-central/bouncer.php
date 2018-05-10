@@ -8,23 +8,20 @@
 
 function checkClientId()
 {
-    if (isset($_SESSION['id'])) {
-        $client_id = authenticateSession($_SESSION['id'])['user_id'];
-        if (isset($client_id)) return $client_id;
-        else return '0';
-    } else return '0';
     // TODO: bouncer.php's checkClientId() -function
     // 1. See if session is active (if active, retrieve client id – if not, proceed to step 2.)
     // 2. See if login -cookie is valid (if valid, start session – if not, return client id as 0)
+
+    return '0';
 }
 
 function loginClient()
 {
     if (isset($_POST['email']) && isset($_POST['password'])) {
-        $password_hash = Person::getPasswordHash(new Email($_POST['email']));
+        $password_hash = Person::getPasswordHash($_POST['email']);
         $id = Person::getId(new Email($_POST['email']));
-        if (isset($password_hash)) {
-            $_SESSION['id'] = createSession($id)['session_id'];
+        if (isset($password_hash) && password_verify($_POST['password'], $password_hash['password_hash'])) {
+            $_SESSION['id'] = createSession($id);
             return true;
         } else {
             return false;

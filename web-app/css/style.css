@@ -59,8 +59,8 @@ footer {
 }
 
 /* Tweaks */
-#log-in-form > a, #log-in-form > span {
-    display: inline-block;
+#log-in-form > a {
+    display: block;
     margin-top: 0.5rem;
 }
 p ~ p {

@@ -12,10 +12,6 @@ header {
     background-color: #444444;
     color: white;
 }
-#log-in-form > span {
-    color: red;
-    font-style: italic;
-}
 #log-in-form > a {
     color: cornflowerblue;
 }

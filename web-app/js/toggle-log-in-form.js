@@ -1,9 +1,10 @@
 function toggleLogInForm() {
-    const logInForm = document.getElementById("log-in-form");
-    if (logInForm.style.display === "none") {
-        logInForm.style.display = "block";
+
+    var x = document.getElementById("log-in-form");
+    if (x.style.display === "none") {
+        x.style.display = "block";
     } else {
-        logInForm.style.display = "none";
+        x.style.display = "none";
     }
 }
 
