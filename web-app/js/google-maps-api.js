@@ -14,7 +14,6 @@ function initMap() {
             });
         }
     });
-
     const latlng = new google.maps.LatLng();
     const mapOptions = {
         zoom: 14,
