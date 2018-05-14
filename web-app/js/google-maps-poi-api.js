@@ -1,18 +1,17 @@
-var map;
-var infowindow;
+let infowindow;
 
 function poi_map() {
 
     //gets lat and lng from address
-    var latitude;
-    var longitude;
-    var map_address;
-    var MyLatLng;
-    var address = document.getElementById("zip_code_geocoding").innerText;
-    var geocoder = new google.maps.Geocoder();
+    let latitude;
+    let longitude;
+    let map_address;
+    let MyLatLng;
+    const address = document.getElementById("zip_code_geocoding").innerText;
+    const geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function (results, status)
     {
-        if (status == 'OK')
+        if (status === 'OK')
         {
             latitude = results[0].geometry.location.lat();
             longitude = results[0].geometry.location.lng();
@@ -27,16 +26,13 @@ function poi_map() {
             });
 
             infowindow = new google.maps.InfoWindow();
-            var service = new google.maps.places.PlacesService(map);
+            const service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
                 location: map_address,
                 radius: 1500,
                 type: ['restaurant']
             }, callback);
 
-        }
-        else {
-            alert("Error");
         }
     });
 
@@ -52,7 +48,7 @@ function poi_map() {
     });
 
     infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
+    const service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
         location: map_address,
         radius: 1000,
@@ -62,15 +58,15 @@ function poi_map() {
 //functions outside initMap
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
+        for (let i = 0; i < results.length; i++) {
             createMarker(results[i]);
         }
     }
 }
 
 function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
+    const placeLoc = place.geometry.location;
+    const marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location
     });
