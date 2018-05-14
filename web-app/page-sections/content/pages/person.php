@@ -33,12 +33,18 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
             <option value="USDSEK">SEK
             <option value="USDNOK">NOK
         </select>
-        <li>Dating preference: <?php echo $page_specific_properties['person']->get('dating_preference')->value() ?></li>
+        <li id>Dating preference: <?php
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "2"){echo "Male";}
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "3"){echo "Female";}
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "4"){echo "Other";}
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "5"){echo "Male & Female";}
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "6"){echo "Male & Other";}
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "7"){echo "Female & Other";} ?></li>
     </ul>
 </p>
 
     <div id="salary_base" style="display: none"><?php echo $page_specific_properties['person']->get('annual_salary')->value() ?></div>
-    <div id="zip_code_geocoding"style="display:none"><?php echo $page_specific_properties['person']->get('zip_code')->value() ?></div>
+    <div id="zip_code_geocoding"style="display:none"><?php echo $page_specific_properties['person']->get('zip_code')->value() . "Finland" ?></div>
     <button id="poi" onclick="poi_map()">Take your date here:</button>
     <div id="map" style="width: 360px; height: 360px;" onload="initMap()"></div>
 

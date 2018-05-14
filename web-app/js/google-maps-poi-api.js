@@ -15,8 +15,6 @@ function poi_map() {
         {
             latitude = results[0].geometry.location.lat();
             longitude = results[0].geometry.location.lng();
-            console.log("inside geocoder");
-            console.log(latitude,longitude);
             MyLatLng = new google.maps.LatLng({lat: latitude, lng: longitude});
 
             map_address = MyLatLng;
@@ -39,7 +37,7 @@ function poi_map() {
     MyLatLng = new google.maps.LatLng({lat: 60.192059, lng: 24.945831});
     map_address ={lat: 60.192059, lng: 24.945831};
     map_address = MyLatLng;
-    console.log(MyLatLng);
+
 
 
     map = new google.maps.Map(document.getElementById('map'), {
