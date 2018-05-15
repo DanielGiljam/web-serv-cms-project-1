@@ -56,4 +56,3 @@ function createMarker(place) {
         info_window.open(map, this);
     });
 }
-
