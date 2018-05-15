@@ -39,7 +39,8 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
             if($page_specific_properties['person']->get('dating_preference')->value()=== "4"){echo "Other";}
             if($page_specific_properties['person']->get('dating_preference')->value()=== "5"){echo "Male & Female";}
             if($page_specific_properties['person']->get('dating_preference')->value()=== "6"){echo "Male & Other";}
-            if($page_specific_properties['person']->get('dating_preference')->value()=== "7"){echo "Female & Other";} ?></li>
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "7"){echo "Female & Other";}
+            if($page_specific_properties['person']->get('dating_preference')->value()=== "9"){echo "Open to everything";}?></li>
     </ul>
 </p>
 
