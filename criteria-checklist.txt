@@ -7,3 +7,8 @@ CRITERIA CHECKLIST
 [x] 8p - Google Maps API
 [x] 8p – PoI API
 [ ] 4p – Presentation
+
+Our own criterias/extra goals:
+[ ] Login/logout system
+[ ] Website layout and design (CSS, themes)
+[ ] Activity logging
