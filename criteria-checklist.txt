@@ -1,0 +1,9 @@
+CRITERIA CHECKLIST
+
+[x] 8p - Registration and persistent (person) page creation
+[ ] 8p - Browse pages (feed)
+[ ] 6p - Persistent (person) page editing
+[x] 8p - Currency conversion API
+[x] 8p - Google Maps API
+[x] 8p – PoI API
+[ ] 4p – Presentation
