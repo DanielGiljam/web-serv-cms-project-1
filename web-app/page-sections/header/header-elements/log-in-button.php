@@ -18,6 +18,6 @@
     <label for="log-in-form-email">Email: </label><input id="log-in-form-email" type="email" name="email" value="<?php if (isset($app_state_central->getPageSpecificProperties()['wrong_email_or_password'])) echo $app_state_central->getPageSpecificProperties()['wrong_email_or_password'] ?>">
     <label for="log-in-form-password">Password: </label><input id="log-in-form-password" type="password" name="password">
     <input id="log-in-form-submit" type="submit" value="Go!"><br>
-    <?php if (isset($app_state_central->getPageSpecificProperties()['wrong_email_or_password'])) echo '<span id="wrong-email-or-password">' . $app_state_central->getPageSpecificProperties()['weop_text'] . '</span><br>' ?>
+    <?php if (isset($app_state_central->getPageSpecificProperties()['wrong_email_or_password'])) echo '<span id="wrong-email-or-password">Wrong email or password.</span><br>' ?>
     <a href="<?php echo getContextRoot() . 'forgot-password' ?>">Forgot password</a>
 </form>

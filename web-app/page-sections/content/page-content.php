@@ -12,8 +12,6 @@
 
 <?php
 
-$page_specific_properties = $app_state_central->getPageSpecificProperties();
-
 switch ($page_specific_properties[0]) {
 
     case 'person':

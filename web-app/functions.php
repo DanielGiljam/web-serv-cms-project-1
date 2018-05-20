@@ -28,11 +28,6 @@ function release()
     die();
 }
 
-function urlCleanup() 
-{
-    include 'miscellaneous/url-cleanup.php';
-}
-
 function processRegSub()
 {
     include 'miscellaneous/reg-sub-processing.php';
@@ -46,6 +41,28 @@ function processRegSub()
     } else {
         logFailedRegistrationAttempt();
         return 1;
+    }
+}
+
+function dpIntToString($dp_int)
+{
+    switch ($dp_int) {
+        case 2:
+            return 'Male';
+        case 3:
+            return 'Female';
+        case 4:
+            return 'Other';
+        case 5:
+            return 'Male & Female';
+        case 6:
+            return 'Male & Other';
+        case 7:
+            return 'Female & Other';
+        case 9:
+            return 'Male, Female & Other';
+        default:
+            return 'None';
     }
 }
 

@@ -14,7 +14,7 @@ class AppStateCentral {
     private $client_id = '0';
     private $page_title = 'Dating Site';
     private $page_title_domain = 'Dating Site';
-    private $page_title_location = null;
+    private $page_title_location = '';
     private $theme_href = '/css/theme.css';
     private $script_tags = '';
 
@@ -34,10 +34,8 @@ class AppStateCentral {
         {
             if (isset($_GET['login-request']) && $_GET['login-request'] === 'true') {
                 if (isset($_POST)) {
-                    $this->page_specific_properties['weop_text'] .= 'At least it got here... (1) ';
                     if (!loginClient()) {
                         $this->page_specific_properties['wrong_email_or_password'] = $_POST['email'];
-                        $this->page_specific_properties['weop_text'] .= 'At least it got here... (2) ';
                         $this->client_id = checkClientId();
                     } else {
                         redirect('');
@@ -70,11 +68,14 @@ class AppStateCentral {
                         $this->page_title_location = 'Forgot Password';
                         $this->page_title = $this->page_title_domain . ' | ' . $this->page_title_location;
                         break;
+                    case 'feed':
+                        $this->page_specific_properties[0] = 'feed';
+                        $this->setFeedPageProperties();
+                        break;
                     default:
                         $this->page_specific_properties[0] = 'feed';
                         $this->setFeedPageProperties();
                         break;
-
                 }
             } else {
                 $this->setUnspecifiedPageProperties();
@@ -185,6 +186,7 @@ class AppStateCentral {
         {
             if ($this->client_id !== '0') {
                 // TODO: finish unspecifiedPageProperties() -function
+                $this->page_specific_properties[0] = 'feed';
             } else {
                 $this->page_specific_properties[0] = 'feed';
                 $this->setFeedPageProperties();

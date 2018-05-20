@@ -34,9 +34,9 @@ function setUpGetNameUrlEncodedWithId ($id)
     return $name_url_encoded_executable->fetch();
 }
 
-function setUpGetPasswordHashAndIdWithEmail ($email)
+function setUpGetPasswordHashWithEmail ($email)
 {
-    $password_hash_executable = Vault::getConnection()->read(['id', 'password_hash'], ['users_main'], ["`email` = ?"]);
+    $password_hash_executable = Vault::getConnection()->read(['password_hash'], ['users_main'], ["`email` = ?"]);
     $password_hash_executable->execute([$email]);
     return $password_hash_executable->fetch();
 }
@@ -65,7 +65,7 @@ function setUpVerifyNameUrlEncoded ($name_url_encoded)
 function setUpAuthenticateSession ($session_id)
 {
     // TODO: finish session authentication!
-    $authenticate_session_executable = Vault::getConnection()->read(['user_id', 'session_expiration'], ['sessions_log'], ["`session_id` = ? && `session_end` = null"]);
+    $authenticate_session_executable = Vault::getConnection()->read(['user_id', 'session_expiration'], ['sessions_log'], ["`session_id` = ? && `session_end` is null"]);
     $authenticate_session_executable->execute([$session_id]);
     return $authenticate_session_executable->fetch();
 }

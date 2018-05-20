@@ -3,7 +3,7 @@ let map;
 
 function initMap() {
     geocoder = new google.maps.Geocoder();
-    const address = document.getElementById('zip_code_geocoding').innerText;
+    const address = document.getElementById('zip_code').innerText.slice(-5);
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
             map.setCenter(results[0].geometry.location);

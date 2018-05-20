@@ -62,6 +62,7 @@ class Vault {
             else $command .= ")";
             $i++;
         }
+        // echo 'create -query: "' . $command . '"<br>';
         return $this->handler->prepare($command);
     }
 
@@ -78,6 +79,7 @@ class Vault {
             if ($f !== $from[count($from) - 1]) $command .= ",";
         }
         $command .= " WHERE " . $where[0];
+        // echo 'read -query: "' . $command . '"<br>';
         return $this->handler->prepare($command);
     }
 

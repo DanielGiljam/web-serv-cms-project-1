@@ -66,7 +66,7 @@ $password_hash_executable = null;
 function getPasswordHashWithEmail($email)
 {
     if (!isset($password_hash_executable)) {
-        return setUpGetNameUrlEncodedWithId($email);
+        return setUpGetPasswordHashWithEmail($email);
     } else {
         $password_hash_executable->execute([$email]);
         return $password_hash_executable->fetch();
@@ -126,7 +126,7 @@ function createSession($id)
 {
     $create_session_executable = Vault::getConnection()->create(['sessions_log'], ['session_id', 'user_id', 'remote_addr', 'session_expiration'], ['UNIQUE_ID', $id, $_SERVER['REMOTE_ADDR'], 'EXPIRATION_TIMESTAMP']);
     $create_session_executable->execute();
-    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? && `session_end` = null"]);
+    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? && `session_end` is null"]);
     $read_session_id_executable->execute([$id]);
     return $read_session_id_executable->fetch();
 }

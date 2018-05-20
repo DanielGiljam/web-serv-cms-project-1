@@ -39,7 +39,9 @@
 
 <?php
 
-    if ($app_state_central->getPageSpecificProperties()[0] === 'person' || $app_state_central->getPageSpecificProperties()[0] === 'feed') {
+    $page_specific_properties = $app_state_central->getPageSpecificProperties();
+
+    if (($page_specific_properties[0] === 'person' && !(isset($page_specific_properties['no_such_user']) && $page_specific_properties['no_such_user'])) || $page_specific_properties[0] === 'feed') {
         if ($app_state_central->getClientId() !== '0') include 'header-elements/log-out-button.php';
         else include 'header-elements/log-in-button.php';
     }

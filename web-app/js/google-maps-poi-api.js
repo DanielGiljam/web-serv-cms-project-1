@@ -2,7 +2,7 @@ let info_window;
 
 function poi_map() {
     let map_address;
-    const address = document.getElementById("zip_code_geocoding").innerText;
+    const address = document.getElementById('zip_code').innerText.slice(-5);
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function (results, status) {
         if (status === 'OK') {

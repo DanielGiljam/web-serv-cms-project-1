@@ -1,10 +1,11 @@
 RewriteEngine On
 
 # TODO: actually write the .htaccess - these lines are just for demonstrational purposes
-RewriteRule ^forgot-password$ index.php?page=forgot-password
+RewriteRule ^forgot-password/?$ index.php?page=forgot-password
 RewriteRule ^register/?$ index.php?page=register
-RewriteRule ^register/submit$ index.php?page=register&registration-submitted=true
-RewriteRule ^logout$ index.php?terminate-session=true
-RewriteRule ^login$ index.php?login-request=true
+RewriteRule ^register/submit/?$ index.php?page=register&registration-submitted=true
+RewriteRule ^logout/?$ index.php?terminate-session=true
+RewriteRule ^login/?$ index.php?login-request=true
 RewriteRule ^person/?$ index.php?page=person
-RewriteRule ^person/([a-z-]+)$ index.php?page=person&name=$1
+RewriteRule ^person/([a-z-]+)/?$ index.php?page=person&name=$1
+RewriteRule ^feed/?$ index.php?page=feed

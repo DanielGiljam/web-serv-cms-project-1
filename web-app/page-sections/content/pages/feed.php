@@ -9,5 +9,5 @@
 
 
 
-<p>This is the feed.</p>
+<p>This is the feed. <?php echo 'Client ID: ' . $app_state_central->getClientId() ?></p>
 
