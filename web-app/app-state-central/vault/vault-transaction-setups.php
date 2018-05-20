@@ -72,5 +72,7 @@ function setUpAuthenticateSession ($session_id)
 
 function setUpSealSession ($session_id)
 {
-    // TODO: make this function!
+    $seal_session_executable = Vault::getConnection()->update(['sessions_log'], ['session_end'], ['CURRENT_TIMESTAMP'], ["`session_id` = ?"]);
+    $seal_session_executable->execute([$session_id]);
+    return $seal_session_executable->fetch();
 }

@@ -42,7 +42,6 @@ class Vault {
             if ($c !== $columns[count($columns) - 1]) $command .= ",";
         }
         $command .= ") VALUES (";
-        $i = 0;
         foreach ($values as $v) {
             switch ($v) {
                 case 'UNIQUE_ID':
@@ -60,7 +59,6 @@ class Vault {
             }
             if ($v !== $values[count($values) - 1]) $command .= ",";
             else $command .= ")";
-            $i++;
         }
         // echo 'create -query: "' . $command . '"<br>';
         return $this->handler->prepare($command);
@@ -73,19 +71,38 @@ class Vault {
             $command .= "`" . $s . "`";
             if ($s !== $select[count($select) - 1]) $command .= ",";
         }
-        $command .= " FROM ";
-        foreach ($from as $f) {
-            $command .= "`" . $f . "`";
-            if ($f !== $from[count($from) - 1]) $command .= ",";
-        }
+        $command .= " FROM `" . $from[0] . "`";
         $command .= " WHERE " . $where[0];
         // echo 'read -query: "' . $command . '"<br>';
         return $this->handler->prepare($command);
     }
 
-    public function update()
+    public function update($table_name, $column_names, $column_values, $condition)
     {
-        // TODO: make this function
+        $command = "UPDATE `" . $table_name[0] . "` SET ";
+        $i = 0;
+        foreach ($column_names as $cn) {
+            switch ($column_values[$i]) {
+                case 'UNIQUE_ID':
+                    $cv = "UUID()";
+                    break;
+                case 'EXPIRATION_TIMESTAMP':
+                    $cv = "addtime(now(),'02:00:00')";
+                    break;
+                case 'CURRENT_TIMESTAMP':
+                    $cv = "now()";
+                    break;
+                default:
+                    $cv = "'" . $column_values[$i] . "'";
+                    break;
+            }
+            $command .= "`" . $cn . "` = " . $cv;
+            if ($cn !== $column_names[count($column_names) - 1]) $command .= ", ";
+            $i++;
+        }
+        $command .= " WHERE " . $condition[0];
+        // echo 'update -query: "' . $command . '"<br>';
+        return $this->handler->prepare($command);
     }
 
     public function delete()

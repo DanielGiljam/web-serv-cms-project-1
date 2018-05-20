@@ -135,6 +135,7 @@ $authenticate_session_executable = null;
 
 function authenticateSession($session_id)
 {
+    // TODO: finish session authentication!
     if (!isset($authenticate_session_executable)) {
         return setUpAuthenticateSession($session_id);
     } else {
@@ -143,7 +144,14 @@ function authenticateSession($session_id)
     }
 }
 
+$seal_session_executable = null;
+
 function sealSession ($session_id)
 {
-    // TODO: make this function!
+    if (!isset($seal_session_executable)) {
+        return setUpSealSession($session_id);
+    } else {
+        $seal_session_executable->execute([$session_id]);
+        return $seal_session_executable->fetch();
+    }
 }
