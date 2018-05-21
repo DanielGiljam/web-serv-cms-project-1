@@ -44,7 +44,7 @@ $result = dbtest::get('SELECT * FROM users_main');
     <?php
     while($row = $result->fetch_assoc()) {
         echo '<tr><td>' . $row["name"] . '</td><td>' . $row["annual_salary"] .
-        '</td><td><a href="' . getContextRoot() .'/person/' . $row["name_url_encoded"].'">' . ' ' . $row["name_url_encoded"].'</a></td>';
+        '</td><td><a href="' . getContextRoot() .'person/' . $row["name_url_encoded"].'">' . ' ' . $row["name_url_encoded"].'</a></td>';
     }
     ?>
 </table>
