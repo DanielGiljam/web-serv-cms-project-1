@@ -1,6 +1,5 @@
 RewriteEngine On
 
-# TODO: actually write the .htaccess - these lines are just for demonstrational purposes
 RewriteRule ^forgot-password/?$ index.php?page=forgot-password
 RewriteRule ^register/?$ index.php?page=register
 RewriteRule ^register/submit/?$ index.php?page=register&registration-submitted=true

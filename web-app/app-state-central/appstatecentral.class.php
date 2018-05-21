@@ -139,8 +139,7 @@ class AppStateCentral {
             if ($this->client_id !== '0') {
                 $this->page_specific_properties['your_page'] = $this->matchNameWithClientId();
 
-                // all person page property "sets" within following if -statement are exclusive to logged in clients
-                // visiting their own person -page
+                // all person page property "sets" within following if -statement are exclusive to logged in clients visiting their own person -page
                 if ($this->page_specific_properties['your_page'] === true) {
 
                     // if the GET key "settings" has the value "shown", then the "show settings" property is set to "true"

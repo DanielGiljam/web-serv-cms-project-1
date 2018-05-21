@@ -9,15 +9,30 @@
 function checkClientId()
 {
     if (isset($_SESSION['id'])) {
-        $client_id = authenticateSession($_SESSION['id'])['user_id'];
-        if (isset($client_id)) return $client_id;
-        else return '0';
+        $session_authenticated = authenticateSession($_SESSION['id']);
+        return $session_authenticated;
     } else {
         return '0';
     }
     // TODO: bouncer.php's checkClientId() -function
     // 1. See if session is active (if active, retrieve client id – if not, proceed to step 2.)
     // 2. See if login -cookie is valid (if valid, start session – if not, return client id as 0)
+}
+
+function authenticateSession($session_id)
+{
+    $current_timestamp = new DateTime('now', new DateTimeZone('Europe/Helsinki'));
+    $ses_auth_details = verifySession($_SESSION['id']);
+    if (isset($ses_auth_details['user_id']) && isset($ses_auth_details['session_expiration'])) {
+        if ($current_timestamp->getTimestamp() < strtotime($ses_auth_details['session_expiration'])) {
+            return $ses_auth_details['user_id'];
+        } else {
+            sealSession($session_id);
+            return '0';
+        }
+    } else {
+        return '0';
+    }
 }
 
 function loginClient()
@@ -39,6 +54,7 @@ function loginClient()
 
 function logoutClient()
 {
+    sealSession($_SESSION['id']);
     // TODO: bouncer.php's logoutClient() -function
     // 1. Destroy any present (valid) login -cookies
     // 2. End session

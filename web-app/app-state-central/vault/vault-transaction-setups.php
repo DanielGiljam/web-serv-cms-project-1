@@ -62,9 +62,8 @@ function setUpVerifyNameUrlEncoded ($name_url_encoded)
     return $verify_name_url_encoded_executable->fetch();
 }
 
-function setUpAuthenticateSession ($session_id)
+function setUpVerifySession ($session_id)
 {
-    // TODO: finish session authentication!
     $authenticate_session_executable = Vault::getConnection()->read(['user_id', 'session_expiration'], ['sessions_log'], ["`session_id` = ? && `session_end` is null"]);
     $authenticate_session_executable->execute([$session_id]);
     return $authenticate_session_executable->fetch();
@@ -74,5 +73,4 @@ function setUpSealSession ($session_id)
 {
     $seal_session_executable = Vault::getConnection()->update(['sessions_log'], ['session_end'], ['CURRENT_TIMESTAMP'], ["`session_id` = ?"]);
     $seal_session_executable->execute([$session_id]);
-    return $seal_session_executable->fetch();
 }

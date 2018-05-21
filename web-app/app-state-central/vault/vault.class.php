@@ -31,6 +31,7 @@ class Vault {
 
     public static function closeConnection()
     {
+        self::$connection = null;
         // TODO: make this function
     }
 

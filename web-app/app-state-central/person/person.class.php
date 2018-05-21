@@ -111,15 +111,6 @@ class Person {
         else return false;
     }
 
-    public static function getName(PersonProperty $id_or_name_url_encoded)
-    {
-        if ($id_or_name_url_encoded->name() === 'id') {
-            return '>corresponding-name<'; // TODO: make this function return a real value
-        } else {
-            return '>corresponding-name<'; // TODO: make this function return a real value
-        }
-    }
-
     private static function nameUrlEncoder($name)
     {
         $name_url_encoded = strtolower($name);

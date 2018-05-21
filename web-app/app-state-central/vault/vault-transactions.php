@@ -124,20 +124,22 @@ function logFRA($remote_addr, $event)
 
 function createSession($id)
 {
+    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? && `session_end` is null && `remote_addr` = '" . $_SERVER['REMOTE_ADDR'] . "' && `session_expiration` > now()"]);
+    $read_session_id_executable->execute([$id]);
+    $potential_pre_existing_session = $read_session_id_executable->fetch()['session_id'];
+    if (isset($potential_pre_existing_session)) sealSession($potential_pre_existing_session);
     $create_session_executable = Vault::getConnection()->create(['sessions_log'], ['session_id', 'user_id', 'remote_addr', 'session_expiration'], ['UNIQUE_ID', $id, $_SERVER['REMOTE_ADDR'], 'EXPIRATION_TIMESTAMP']);
     $create_session_executable->execute();
-    $read_session_id_executable = Vault::getConnection()->read(['session_id'], ['sessions_log'], ["`user_id` = ? && `session_end` is null"]);
     $read_session_id_executable->execute([$id]);
     return $read_session_id_executable->fetch();
 }
 
 $authenticate_session_executable = null;
 
-function authenticateSession($session_id)
+function verifySession($session_id)
 {
-    // TODO: finish session authentication!
     if (!isset($authenticate_session_executable)) {
-        return setUpAuthenticateSession($session_id);
+        return setUpVerifySession($session_id);
     } else {
         $authenticate_session_executable->execute([$session_id]);
         return $authenticate_session_executable->fetch();
@@ -149,9 +151,8 @@ $seal_session_executable = null;
 function sealSession ($session_id)
 {
     if (!isset($seal_session_executable)) {
-        return setUpSealSession($session_id);
+        setUpSealSession($session_id);
     } else {
         $seal_session_executable->execute([$session_id]);
-        return $seal_session_executable->fetch();
     }
 }
