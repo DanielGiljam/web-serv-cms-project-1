@@ -18,16 +18,16 @@ function currency_convert() {
             const currencies = JSON.parse(request.responseText);
 
             switch (document.getElementById(currencySelectorId).value) {
-                case 'USDEUR':
+                case 'currency-preference-USDEUR':
                     document.getElementById(elementId).value = (currencies.quotes.USDEUR * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
-                case 'USDGBP':
+                case 'currency-preference-USDGBP':
                     document.getElementById(elementId).value = (currencies.quotes.USDGBP * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
-                case 'USDSEK':
+                case 'currency-preference-USDSEK':
                     document.getElementById(elementId).value = (currencies.quotes.USDSEK * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
-                case 'USDNOK':
+                case 'currency-preference-USDNOK':
                     document.getElementById(elementId).value = (currencies.quotes.USDNOK * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 default:
@@ -60,16 +60,16 @@ function currency_convert_inverse() {
             const currencies = JSON.parse(request.responseText);
 
             switch (document.getElementById(currencySelectorId).value) {
-                case 'USDEUR':
+                case 'currency-preference-USDEUR':
                     document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDEUR).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
-                case 'USDGBP':
+                case 'currency-preference-USDGBP':
                     document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDGBP).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
-                case 'USDSEK':
+                case 'currency-preference-USDSEK':
                     document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDSEK).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
-                case 'USDNOK':
+                case 'currency-preference-USDNOK':
                     document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDNOK).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 default:

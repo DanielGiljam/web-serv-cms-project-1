@@ -5,6 +5,7 @@
 # The form with which you sign up to the site with.
 
 ?>
+
 <form id="reg-form" action="<?php echo getContextRoot() . 'register/submit'; ?>" method="post">
 
     <label for="reg-form-name">Name:</label>
@@ -59,36 +60,50 @@
 
     <span id="reg-form-annual-salary-hidden" style="display: none"></span>
     <label for="reg-form-annual-salary">Annual Salary:</label>
-    <input id="reg-form-annual-salary"
+    <div id="reg-form-annual-salary">
+        <input id="reg-form-annual-salary-input"
+           title="reg-form-annual-salary-input"
            type="text"
            name="annual_salary"
            value=""
            onblur="check_annual_salary_input(this)">
+        <select id="reg-form-currency-preference" title="reg-form-currency-preference" onchange="currency_convert()">
+            <option id="reg-form-currency-preference-USD"
+                    name="currency-preference-USD"
+                    value="currency-preference-USD">USD</option>
+            <option id="reg-form-currency-preference-EUR"
+                    name="currency-preference-USDEUR"
+                    value="currency-preference-USDEUR">EUR</option>
+            <option id="reg-form-currency-preference-GBP"
+                    name="currency-preference-USDGBP"
+                    value="currency-preference-USDGBP">GBP</option>
+            <option id="reg-form-currency-preference-SEK"
+                    name="currency-preference-USDSEK"
+                    value="currency-preference-USDSEK">SEK</option>
+            <option id="reg-form-currency-preference-NOK"
+                    name="currency-preference-USDNOK"
+                    value="currency-preference-USDNOK">NOK</option>
+        </select></div>
     <span id="reg-form-as-error"></span>
-
-    <select id="reg-form-currency-preference" title="reg-form-currency-preference" onchange="currency_convert()">
-        <option value="USD">USD
-        <option value="USDEUR">EUR
-        <option value="USDGBP">GBP
-        <option value="USDSEK">SEK
-        <option value="USDNOK">NOK
-    </select>
 
     <label for="reg-form-dating-preference">Dating Preference:</label>
     <div id="reg-form-dating-preference">
         <input id="reg-form-dating-preference-male"
+               title="reg-form-dating-preference-male"
                type="checkbox"
                name="dating_preference_male"
                value="dating_preference_male"
                onclick="check_dating_preference_input()">Male
 
         <input id="reg-form-dating-preference-female"
+               title="reg-form-dating-preference-female"
                type="checkbox"
                name="dating_preference_female"
                value="dating_preference_female"
                onclick="check_dating_preference_input()">Female
 
         <input id="reg-form-dating-preference-other"
+               title="reg-form-dating-preference-other"
                type="checkbox"
                name="dating_preference_other"
                value="dating_preference_other"

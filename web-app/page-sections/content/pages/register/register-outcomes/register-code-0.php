@@ -7,4 +7,4 @@
 ?>
 
 <p>Registration successful.</p>
-<a href="<?php echo getContextRoot() . 'index.php' ?>">back to start</a>
+<p><a href="<?php echo getContextRoot() ?>">Go to feed</a></p>

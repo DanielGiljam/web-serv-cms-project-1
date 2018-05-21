@@ -163,6 +163,9 @@ class Person {
                 return $this->about_you;
             case 'annual_salary':
                 return $this->annual_salary;
+            case 'currency_preference':
+                // TODO: actually implement this (it's hardcoded for now)
+                return 1;
             case 'dating_preference':
                 return $this->dating_preference;
             default:

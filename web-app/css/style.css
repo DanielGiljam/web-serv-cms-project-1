@@ -69,7 +69,7 @@ p ~ p {
 #reg-form > label {
     margin-right: 1rem;
 }
-#reg-form > span ~ label, #reg-form > input, #reg-form > #reg-form-about-you, #reg-form > #reg-form-dating-preference {
+#reg-form > span ~ label, #reg-form > input, #reg-form > #reg-form-about-you, #reg-form > #reg-form-annual-salary, #reg-form > #reg-form-dating-preference {
     margin-top: 1rem;
 }
 #reg-form > #reg-form-name {
