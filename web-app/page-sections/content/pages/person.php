@@ -13,6 +13,14 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
 
 <?php
 
+} else if ($app_state_central->getClientId() === '0') {
+
+?>
+
+<p>Please log in or register to view content.</p>
+
+<?php
+
 } else {
 
 ?>
@@ -25,15 +33,7 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
     <li id="zip_code">ZIP code: <?php echo $page_specific_properties['person']->get('zip_code')->value() ?></li>
     <li>About you: <?php echo $page_specific_properties['person']->get('about_you')->value() ?></li>
     <li id="annual_salary_hidden" style="display: none"><?php echo $page_specific_properties['person']->get('annual_salary')->value() ?></li>
-    <li id="annual_salary">Annual salary: <?php echo $page_specific_properties['person']->get('annual_salary')->value() ?>
-        <select id="currency_selector" onchange="currency_convert()">
-            <option value="USD">USD
-            <option value="USDEUR">EUR
-            <option value="USDGBP">GBP
-            <option value="USDSEK">SEK
-            <option value="USDNOK">NOK
-        </select>
-    </li>
+    <li id="annual_salary" onload="get_currency(1)">Annual salary: </li>
     <li id>Dating preference: <?php echo dpIntToString($page_specific_properties['person']->get('dating_preference')->value()) ?></li>
 </ul>
 

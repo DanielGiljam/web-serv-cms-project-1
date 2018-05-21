@@ -199,6 +199,7 @@ function check_annual_salary_input(input){
         input.style.borderColor = 'gray';
         document.getElementById("reg-form-as-error").innerText = "";
         check_annual_salary = true;
+        currency_convert_inverse();
     } else {
         if (input.value === "") {
             input.style.borderColor = 'gray';

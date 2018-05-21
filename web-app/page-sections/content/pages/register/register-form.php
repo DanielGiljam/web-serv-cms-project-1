@@ -57,6 +57,7 @@
               onblur="check_about_you_input(this)"></textarea>
     <span id="reg-form-ay-error"></span>
 
+    <span id="reg-form-annual-salary-hidden" style="display: none"></span>
     <label for="reg-form-annual-salary">Annual Salary:</label>
     <input id="reg-form-annual-salary"
            type="text"
@@ -64,6 +65,14 @@
            value=""
            onblur="check_annual_salary_input(this)">
     <span id="reg-form-as-error"></span>
+
+    <select id="reg-form-currency-preference" title="reg-form-currency-preference" onchange="currency_convert()">
+        <option value="USD">USD
+        <option value="USDEUR">EUR
+        <option value="USDGBP">GBP
+        <option value="USDSEK">SEK
+        <option value="USDNOK">NOK
+    </select>
 
     <label for="reg-form-dating-preference">Dating Preference:</label>
     <div id="reg-form-dating-preference">
