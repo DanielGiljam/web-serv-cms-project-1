@@ -201,6 +201,7 @@ function check_annual_salary_input(input) {
         check_annual_salary = true;
         currency_convert_inverse();
     } else {
+        document.getElementById("reg-form-annual-salary-hidden").value = "";
         if (input.value === "") {
             input.style.borderColor = 'gray';
             document.getElementById("reg-form-as-error").innerText = "";

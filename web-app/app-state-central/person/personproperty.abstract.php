@@ -29,6 +29,7 @@ abstract class PersonProperty {
 
 include 'personproperties/id.class.php';
 include 'personproperties/name.class.php';
+include 'personproperties/gender.class.php';
 include 'personproperties/nameurlencoded.class.php';
 include 'personproperties/email.class.php';
 include 'personproperties/zipcode.class.php';

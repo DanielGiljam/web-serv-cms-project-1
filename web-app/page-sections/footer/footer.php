@@ -8,7 +8,7 @@
 
 <footer>
 
-    <span>GiljamKallmann, 2018</span>
+    <span class="container-padding">GiljamKallmann, 2018</span>
 
 </footer>
 

@@ -32,14 +32,20 @@
 
 <div id="header-grid-container">
 
+<?php if ($page_specific_properties[0] !== 'feed') { ?>
+
 <div id="page-titles">
     <h1><?php echo $app_state_central->getPageTitleDomain() ?></h1>
     <h2><?php echo $app_state_central->getPageTitleLocation() ?></h2>
 </div>
 
-<?php
+<?php } else { ?>
 
-    $page_specific_properties = $app_state_central->getPageSpecificProperties();
+<div id="page-title">
+    <h1><?php echo $app_state_central->getPageTitleDomain() ?></h1>
+</div>
+
+<?php }
 
     if (($page_specific_properties[0] === 'person' && !(isset($page_specific_properties['no_such_user']) && $page_specific_properties['no_such_user'])) || $page_specific_properties[0] === 'feed') {
         if ($app_state_central->getClientId() !== '0') include 'header-elements/log-out-button.php';

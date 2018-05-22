@@ -6,4 +6,4 @@
 
 ?>
 
-<p>This is where you reset your password.</p>
+<p class="container-padding">This is where you reset your password.</p>

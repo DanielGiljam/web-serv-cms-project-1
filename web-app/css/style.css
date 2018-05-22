@@ -29,6 +29,12 @@ header::after {
     align-self: end;
     justify-self: start;
 }
+#page-title {
+    display: inline-block;
+    padding: 1rem 0 1rem 1rem;
+    align-self: end;
+    justify-self: start;
+}
 #header-buttons {
     display: inline-block;
     padding: 1rem 1rem 1rem 0;
@@ -47,14 +53,17 @@ textarea {
 }
 main {
     min-height: 8rem;
+}
+#feed-container {
+    padding: 1rem;
+}
+#person-page-container {
     padding: 1rem;
 }
 #reg-form {
     display: grid;
     grid-template-columns: max-content auto;
     max-width: 24rem;
-}
-footer {
     padding: 1rem;
 }
 
@@ -69,7 +78,7 @@ p ~ p {
 #reg-form > label {
     margin-right: 1rem;
 }
-#reg-form > span ~ label, #reg-form > input, #reg-form > #reg-form-about-you, #reg-form > #reg-form-annual-salary, #reg-form > #reg-form-dating-preference {
+#reg-form > span ~ label, #reg-form > input, #reg-form > #reg-form-gender, #reg-form > #reg-form-about-you, #reg-form > #reg-form-annual-salary, #reg-form > #reg-form-dating-preference {
     margin-top: 1rem;
 }
 #reg-form > #reg-form-name {
@@ -86,6 +95,18 @@ p ~ p {
 /* Classes */
 .button {
 
+}
+.container-padding {
+    padding: 1rem;
+}
+.male-ppc {
+    background-color: #a5d0eb;
+}
+.female-ppc {
+    background-color: #eba3be;
+}
+.other-ppc {
+    background-color: white;
 }
 
 /* User agent stylesheet overrides */

@@ -90,15 +90,14 @@ class AppStateCentral {
         private function setScriptTags()
         {
             $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script>';
-            $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/register-form-validation.js"></script>';
+            $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/register-form-validation.js"></script><script src="' . getContextRoot() . 'js/currency-converter-api-sync.js"></script>';
+            $person_page_related_tags = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=init_map"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script><script src="' . getContextRoot() . 'js/currency-converter-api-fetch.js"></script>';
             $your_page_related_tags = '<script src="' . getContextRoot() . 'js/edit-profile-controls.js"></script>';
-            $google_maps_api = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=init_map"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script>';
-            $currency_converter_api = '<script src="' . getContextRoot() . 'js/currency-converter-api.js"></script>';
             switch ($this->page_specific_properties[0]) {
                 case 'person':
                     $this->script_tags .= $login_logout_related_tags;
                     if ($this->client_id !== '0' && !isset($this->page_specific_properties['no_such_user'])) {
-                        $this->script_tags .= $google_maps_api . $currency_converter_api;
+                        $this->script_tags .= $person_page_related_tags;
                         if ($this->page_specific_properties['your_page']) {
                             $this->script_tags .= $your_page_related_tags;
                         }
@@ -106,7 +105,7 @@ class AppStateCentral {
                     break;
                 case 'register':
                     if (!isset($this->page_specific_properties['reg_sub_finish_code'])) {
-                        $this->script_tags .= $reg_form_related_tags . $currency_converter_api;
+                        $this->script_tags .= $reg_form_related_tags;
                     }
                     break;
                 case 'forgot-password':

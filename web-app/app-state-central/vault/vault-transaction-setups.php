@@ -8,7 +8,7 @@
 
 function setUpGetPerson ($id)
 {
-    $person_executable = Vault::getConnection()->read(['id', 'name', 'name_url_encoded', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference', 'preferences'], ['users_main'], ["`id` = ?"]);
+    $person_executable = Vault::getConnection()->read(['id', 'gender', 'name', 'name_url_encoded', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference', 'preferences'], ['users_main'], ["`id` = ?"]);
     $person_executable->execute([$id]);
     return $person_executable->fetch();
 }

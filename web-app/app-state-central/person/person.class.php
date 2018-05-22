@@ -11,6 +11,7 @@ include 'personproperty.abstract.php';
 class Person {
 
     private $id;
+    private $gender;
     private $name;
     private $name_url_encoded;
     private $email;
@@ -24,6 +25,7 @@ class Person {
     {
         $person_data = getPerson($id);
         $this->id = new Id($person_data['id']);
+        $this->gender = new Gender($person_data['gender']);
         $this->name = new Name($person_data['name']);
         $this->name_url_encoded = new NameUrlEncoded($person_data['name_url_encoded']);
         $this->email = new Email($person_data['email']);
@@ -34,7 +36,8 @@ class Person {
         $this->preferences = new Preferences($person_data['preferences']);
     }
 
-    public static function createPerson(    $name,
+    public static function createPerson(    $gender,
+                                            $name,
                                             $password_hash,
                                             $email,
                                             $zip_code,
@@ -45,10 +48,9 @@ class Person {
     {
         $id = 'UNIQUE_ID';
         $name_url_encoded = self::nameUrlEncoder($name);
-        $super_preferences = [];
-        $super_preferences['preferences'] = $preferences;
-        $preferences = json_encode($super_preferences);
+        $encoded_preferences = json_encode($preferences);
         createPerson([  $id,
+                        $gender,
                         $name,
                         $name_url_encoded,
                         $password_hash,
@@ -57,7 +59,7 @@ class Person {
                         $about_you,
                         $annual_salary,
                         $dating_preference,
-                        $preferences]);
+                        $encoded_preferences]);
     }
 
     public static function getPerson(PersonProperty $property)
@@ -73,6 +75,8 @@ class Person {
                 $id = self::getId($property);
                 if ($id === false) $id = null;
                 break;
+            case 'gender':
+                return false;
             case 'email':
                 return false;
             case 'zip_code':
@@ -81,7 +85,7 @@ class Person {
                 return false;
             case 'annual_salary':
                 return false;
-            case 'dating_preference':
+            case 'preferences':
                 return false;
             default:
                 return false;
@@ -164,6 +168,8 @@ class Person {
                 return $this->name;
             case 'name_url_encoded':
                 return $this->name_url_encoded;
+            case 'gender':
+                return $this->gender;
             case 'email':
                 return $this->email;
             case 'zip_code':

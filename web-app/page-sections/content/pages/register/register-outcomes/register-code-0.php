@@ -6,5 +6,7 @@
 
 ?>
 
-<p>Registration successful.</p>
-<p><a href="<?php echo getContextRoot() ?>">Go to feed</a></p>
+<div class="container-padding">
+    <p>Registration successful.</p>
+    <p><a href="<?php echo getContextRoot() ?>">Go to feed</a></p>
+</div>

@@ -8,5 +8,7 @@
 
 ?>
 
-<p>This email is already registered.</p>
-<p><a href="<?php echo getContextRoot() ?>">Go to feed</a></p>
+<div class="container-padding">
+    <p>This email is already registered.</p>
+    <p><a href="<?php echo getContextRoot() ?>">Go to feed</a></p>
+</div>

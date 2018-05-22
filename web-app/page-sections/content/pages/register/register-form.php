@@ -18,6 +18,19 @@
     <span id="reg-form-name-error-1.2"></span>
     <span id="reg-form-name-error-2"></span>
 
+    <label for="reg-form-gender">Gender:</label>
+    <div id="reg-form-gender">
+        <input id="reg-form-gender-male"
+           title="reg-form-gender-male"
+           type="radio" name="gender" value="male" checked> Male
+        <input id="reg-form-gender-female"
+           title="reg-form-gender-female"
+           type="radio" name="gender" value="female"> Female
+        <input id="reg-form-gender-other"
+           title="reg-form-gender-other"
+           type="radio" name="gender" value="other"> Other
+    </div>
+
     <label for="reg-form-email">Email:</label>
     <input id="reg-form-email"
            type="text"
@@ -75,19 +88,19 @@
         <select id="reg-form-currency-preference" title="reg-form-currency-preference" name="currency_preference" onchange="currency_convert()">
             <option id="reg-form-currency-preference-USD"
                     name="currency_preference_USD"
-                    value="currency_preference_USD">USD</option>
+                    value="USD">USD</option>
             <option id="reg-form-currency-preference-EUR"
                     name="currency_preference_USDEUR"
-                    value="currency_preference_USDEUR">EUR</option>
+                    value="USDEUR">EUR</option>
             <option id="reg-form-currency-preference-GBP"
                     name="currency_preference_USDGBP"
-                    value="currency_preference_USDGBP">GBP</option>
+                    value="USDGBP">GBP</option>
             <option id="reg-form-currency-preference-SEK"
                     name="currency_preference_USDSEK"
-                    value="currency_preference_USDSEK">SEK</option>
+                    value="USDSEK">SEK</option>
             <option id="reg-form-currency-preference-NOK"
                     name="currency_preference_USDNOK"
-                    value="currency_preference_USDNOK">NOK</option>
+                    value="USDNOK">NOK</option>
         </select></div>
     <span id="reg-form-as-error"></span>
 
