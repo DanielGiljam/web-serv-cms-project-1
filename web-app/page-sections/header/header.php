@@ -16,6 +16,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/print.css" media="print" />
 <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() ?>css/style.css" media="screen, projection" />
 <link rel="stylesheet" type="text/css" href="<?php echo getContextRoot() . $app_state_central->getThemeHref() ?>" />

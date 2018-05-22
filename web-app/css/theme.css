@@ -1,33 +1,51 @@
 body {
     background-color: gray;
-    font-family: sans-serif;
+    color: #222222;
+    font-family: 'Montserrat', sans-serif;
+}
+#main-container {
+    box-shadow: 0 0 2.5rem rgba(0,0,0,0.5);
 }
 header {
-    background-color: lightcoral;
+    background-color: white;
 }
 #header-buttons > a {
-    color: #367beb;
+    background-color: #dfdfdf;
+    color: #444444;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+#header-buttons > a:hover {
+    box-shadow: 0 0.075rem 0.5rem rgba(0,0,0,0.5) inset;
 }
 #log-in-form {
     background-color: #444444;
+    border-top: 0.1rem solid #444444;
     color: white;
+}
+#log-in-form > input[type="email"], #log-in-form > input[type="password"] {
+    border: 0.1rem solid white;
 }
 #log-in-form > span {
     color: red;
     font-style: italic;
 }
 #log-in-form > a {
-    color: cornflowerblue;
+    color: white;
+    font-style: italic;
 }
 main {
     background-color: white;
+    border-top: 0.1rem solid #444444;
+    border-bottom: 0.1rem solid #444444;
 }
 #reg-form > input ~ span {
     color: red;
     font-style: italic;
 }
 footer {
-    background-color: lightcoral;
+    background-color: white;
 }
 footer > span {
     font-style: italic;

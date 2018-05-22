@@ -20,7 +20,7 @@
     }
 
 ?>
-<a href="<?php echo getContextRoot() . 'logout' ?>">Log out</a>
+<a class="button" href="<?php echo getContextRoot() . 'logout' ?>">Log out</a>
 
 </div>
 
