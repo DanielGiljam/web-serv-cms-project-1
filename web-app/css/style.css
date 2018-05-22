@@ -57,8 +57,11 @@ main {
 #reg-form {
     display: grid;
     grid-template-columns: max-content auto;
-    max-width: 24rem;
+    max-width: 26rem;
     padding: 1rem;
+}
+#person-page-container > #reg-form {
+    padding: 0;
 }
 
 /* Tweaks */
@@ -71,6 +74,9 @@ main {
     margin-top: 0.5rem;
 }
 p ~ p {
+    margin-top: 1rem;
+}
+#map {
     margin-top: 1rem;
 }
 #reg-form > label {

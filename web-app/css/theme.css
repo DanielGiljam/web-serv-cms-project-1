@@ -9,6 +9,15 @@ body {
 header {
     background-color: white;
 }
+#page-titles h1 {
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+#page-titles h2 {
+    font-weight: 700;
+    font-size: 2rem;
+}
 #header-buttons > a {
     background-color: #dfdfdf;
     color: #444444;
@@ -39,6 +48,15 @@ main {
     background-color: white;
     border-top: 0.1rem solid #444444;
     border-bottom: 0.1rem solid #444444;
+}
+#person-page-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#person-page-container a {
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
 }
 #reg-form > input ~ span {
     color: red;

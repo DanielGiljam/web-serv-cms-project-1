@@ -27,10 +27,10 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
 
 <div id="person-page-container" class="<?php
 switch ($page_specific_properties['person']->get('gender')->value()) {
-    case 0:
+    case 'Male':
         echo 'male-ppc';
         break;
-    case 1:
+    case 'Female':
         echo 'female-ppc';
         break;
     default:
@@ -39,12 +39,11 @@ switch ($page_specific_properties['person']->get('gender')->value()) {
 }
 ?>">
 
-<?php if ($page_specific_properties['your_page']) echo '<button onclick="edit_profile()">Edit profile</button>' ?>
+<?php if ($page_specific_properties['your_page']) echo '<button onclick="edit_profile(\'' . getContextRoot() . '\')">Edit profile</button>' ?>
 
-<p>This is <?php echo $page_specific_properties['person']->get('name')->value() ?>'s page.</p>
-
-<p>More information about the person:</p>
 <ul>
+    <li>Gender: <?php echo $page_specific_properties['person']->get('gender')->value() ?></li>
+    <li>Name: <?php echo $page_specific_properties['person']->get('name')->value() ?></li>
     <li>Email: <?php echo $page_specific_properties['person']->get('email')->value() ?></li>
     <li id="zip-code">ZIP code: <?php echo $page_specific_properties['person']->get('zip_code')->value() ?></li>
     <li>About you: <?php echo $page_specific_properties['person']->get('about_you')->value() ?></li>
@@ -53,7 +52,8 @@ switch ($page_specific_properties['person']->get('gender')->value()) {
     <li>Dating preference: <?php echo $page_specific_properties['person']->get('dating_preference')->value() ?></li>
 </ul>
 
-<button id="poi-button" onclick="poi_map()">Suggest date locations</button>
+<p>Map (<a id="poi-button" onclick="poi_map()">suggest date locations</a>):</p>
+
 <div id="map" style="width: 360px; height: 360px;"></div>
 
 </div>

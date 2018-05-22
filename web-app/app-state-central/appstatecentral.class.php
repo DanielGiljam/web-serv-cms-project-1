@@ -15,7 +15,7 @@ class AppStateCentral {
     private $page_title = 'Dating Site';
     private $page_title_domain = 'Dating Site';
     private $page_title_location = '';
-    private $theme_href = '/css/theme.css';
+    private $theme_href = 'css/theme.css';
     private $script_tags = '';
 
     private $page_specific_properties = [];
@@ -92,7 +92,7 @@ class AppStateCentral {
             $login_logout_related_tags =    '<script src="' . getContextRoot() . 'js/toggle-log-in-form.js"></script>';
             $reg_form_related_tags = '<script src="' . getContextRoot() . 'js/register-form-validation.js"></script><script src="' . getContextRoot() . 'js/currency-converter-api-sync.js"></script>';
             $person_page_related_tags = '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDVReW9KtqGqweQhSNFyAqkwMAE25w6RY&libraries=places&callback=init_map"></script><script src="' . getContextRoot() . 'js/google-maps-api.js"></script><script src="' . getContextRoot() . 'js/google-maps-poi-api.js"></script><script src="' . getContextRoot() . 'js/currency-converter-api-fetch.js"></script>';
-            $your_page_related_tags = '<script src="' . getContextRoot() . 'js/edit-profile-controls.js"></script>';
+            $your_page_related_tags = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="' . getContextRoot() . 'js/edit-profile-controls.js"></script><script src="' . getContextRoot() . 'js/register-form-validation.js"></script><script src="' . getContextRoot() . 'js/currency-converter-api-sync.js"></script>';
             switch ($this->page_specific_properties[0]) {
                 case 'person':
                     $this->script_tags .= $login_logout_related_tags;
