@@ -4,7 +4,6 @@
 #
 # This file contains some miscellaneous functions.
 
-// This one's return value may change until the site is settled on its final platform
 function getContextRoot()
 {
     return '/web-serv-cms-project-1/';

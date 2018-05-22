@@ -25,6 +25,8 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
 
 ?>
 
+<?php if ($page_specific_properties['your_page']) echo '<button onclick="edit_profile()">Edit profile</button>' ?>
+
 <p>This is <?php echo $page_specific_properties['person']->get('name')->value() ?>'s page.</p>
 
 <p>More information about the person:</p>
