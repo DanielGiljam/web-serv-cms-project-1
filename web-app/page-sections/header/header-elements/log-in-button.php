@@ -8,7 +8,7 @@
 ?>
 
 <div id="header-buttons">
-    <button onclick="toggleLogInForm()">Log in</button>
+    <button onclick="toggle_log_in_form()">Log in</button>
     <a href="<?php echo getContextRoot() . 'register' ?>">Sign up</a>
 </div>
 

@@ -136,7 +136,7 @@ function capitalize_name(string) {
 
 
 //Checks e-mail input field in register form
-function check_email_input(input){
+function check_email_input(input) {
     check_email = false;
     input.value = input.value.trim();
     const email_val = input.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})$/);
@@ -159,7 +159,7 @@ function check_email_input(input){
 
 
 //Checks zip code input field in register form
-function check_zip_code_input(input){
+function check_zip_code_input(input) {
     check_zip_code = false;
     input.value = input.value.trim();
     const zip_code_val = input.value.match(/^[0-9]{5}$/);
@@ -182,7 +182,7 @@ function check_zip_code_input(input){
 
 
 //Checks about you input field in register form
-function check_about_you_input(input){
+function check_about_you_input(input) {
     check_about_you = false;
     input.value = input.value.trim();
     check_about_you = input.value !== "";
@@ -191,7 +191,7 @@ function check_about_you_input(input){
 
 
 //Checks annual salary input field in register form
-function check_annual_salary_input(input){
+function check_annual_salary_input(input) {
     check_annual_salary = false;
     input.value = input.value.trim();
     const annual_salary_val = input.value.match(/^[0-9]+$/);
@@ -215,7 +215,7 @@ function check_annual_salary_input(input){
 
 
 //Checks dating preference input field in register form
-function check_dating_preference_input(){
+function check_dating_preference_input() {
     check_dating_preference = false;
     const male_checkbox = document.getElementById("reg-form-dating-preference-male");
     const female_checkbox = document.getElementById("reg-form-dating-preference-female");
@@ -279,7 +279,7 @@ function set_red_password_borders(boolean) {
 }
 
 
-function unlock_submit(){
+function unlock_submit() {
     document.getElementById("reg-form-submit").disabled =
         !(  check_name &&
             check_email &&
