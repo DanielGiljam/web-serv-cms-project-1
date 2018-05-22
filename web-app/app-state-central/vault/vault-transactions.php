@@ -21,7 +21,7 @@ function getPerson($id)
 
 function createPerson($person_data)
 {
-    $create_person_executable = Vault::getConnection()->create(['users_main'], ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference'], $person_data);
+    $create_person_executable = Vault::getConnection()->create(['users_main'], ['id', 'name', 'name_url_encoded', 'password_hash', 'email', 'zip_code', 'about_you', 'annual_salary', 'dating_preference', 'preferences'], $person_data);
     $create_person_executable->execute();
 }
 
@@ -116,7 +116,7 @@ function verifyEmail($email)
     return $verify_email_executable->fetch();
 }
 
-function logFRA($remote_addr, $event)
+function logAnomalityEvent($remote_addr, $event)
 {
     $log_fra_executable = Vault::getConnection()->create(['anomalities_log'], ['remote_addr', 'event'], [$remote_addr, $event]);
     $log_fra_executable->execute();

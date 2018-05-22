@@ -58,7 +58,12 @@
               onblur="check_about_you_input(this)"></textarea>
     <span id="reg-form-ay-error"></span>
 
-    <span id="reg-form-annual-salary-hidden" style="display: none"></span>
+    <input id="reg-form-annual-salary-hidden"
+           style="display: none"
+           title="reg-form-annual-salary-hidden"
+           type="text"
+           name="annual_salary_hidden"
+           value="">
     <label for="reg-form-annual-salary">Annual Salary:</label>
     <div id="reg-form-annual-salary">
         <input id="reg-form-annual-salary-input"
@@ -67,22 +72,22 @@
            name="annual_salary"
            value=""
            onblur="check_annual_salary_input(this)">
-        <select id="reg-form-currency-preference" title="reg-form-currency-preference" onchange="currency_convert()">
+        <select id="reg-form-currency-preference" title="reg-form-currency-preference" name="currency_preference" onchange="currency_convert()">
             <option id="reg-form-currency-preference-USD"
-                    name="currency-preference-USD"
-                    value="currency-preference-USD">USD</option>
+                    name="currency_preference_USD"
+                    value="currency_preference_USD">USD</option>
             <option id="reg-form-currency-preference-EUR"
-                    name="currency-preference-USDEUR"
-                    value="currency-preference-USDEUR">EUR</option>
+                    name="currency_preference_USDEUR"
+                    value="currency_preference_USDEUR">EUR</option>
             <option id="reg-form-currency-preference-GBP"
-                    name="currency-preference-USDGBP"
-                    value="currency-preference-USDGBP">GBP</option>
+                    name="currency_preference_USDGBP"
+                    value="currency_preference_USDGBP">GBP</option>
             <option id="reg-form-currency-preference-SEK"
-                    name="currency-preference-USDSEK"
-                    value="currency-preference-USDSEK">SEK</option>
+                    name="currency_preference_USDSEK"
+                    value="currency_preference_USDSEK">SEK</option>
             <option id="reg-form-currency-preference-NOK"
-                    name="currency-preference-USDNOK"
-                    value="currency-preference-USDNOK">NOK</option>
+                    name="currency_preference_USDNOK"
+                    value="currency_preference_USDNOK">NOK</option>
         </select></div>
     <span id="reg-form-as-error"></span>
 

@@ -1,8 +1,10 @@
 function currency_convert() {
 
-    const elementId = 'reg-form-annual-salary';
+    const elementId = 'reg-form-annual-salary-input';
     const hiddenElementId = 'reg-form-annual-salary-hidden';
     const currencySelectorId = 'reg-form-currency-preference';
+
+    if (document.getElementById(hiddenElementId).value === '') document.getElementById(elementId).value = '';
 
     let request;
 
@@ -19,16 +21,16 @@ function currency_convert() {
 
             switch (document.getElementById(currencySelectorId).value) {
                 case 'currency-preference-USDEUR':
-                    document.getElementById(elementId).value = (currencies.quotes.USDEUR * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(elementId).value = (currencies.quotes.USDEUR * document.getElementById(hiddenElementId).value).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 case 'currency-preference-USDGBP':
-                    document.getElementById(elementId).value = (currencies.quotes.USDGBP * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(elementId).value = (currencies.quotes.USDGBP * document.getElementById(hiddenElementId).value).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 case 'currency-preference-USDSEK':
-                    document.getElementById(elementId).value = (currencies.quotes.USDSEK * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(elementId).value = (currencies.quotes.USDSEK * document.getElementById(hiddenElementId).value).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 case 'currency-preference-USDNOK':
-                    document.getElementById(elementId).value = (currencies.quotes.USDNOK * document.getElementById(hiddenElementId).textContent).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(elementId).value = (currencies.quotes.USDNOK * document.getElementById(hiddenElementId).value).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 default:
                     document.getElementById(elementId).value = document.getElementById(hiddenElementId).textContent;
@@ -42,7 +44,7 @@ function currency_convert() {
 
 function currency_convert_inverse() {
 
-    const elementId = 'reg-form-annual-salary';
+    const elementId = 'reg-form-annual-salary-input';
     const hiddenElementId = 'reg-form-annual-salary-hidden';
     const currencySelectorId = 'reg-form-currency-preference';
 
@@ -61,19 +63,19 @@ function currency_convert_inverse() {
 
             switch (document.getElementById(currencySelectorId).value) {
                 case 'currency-preference-USDEUR':
-                    document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDEUR).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(hiddenElementId).value = (document.getElementById(elementId).value / currencies.quotes.USDEUR).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 case 'currency-preference-USDGBP':
-                    document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDGBP).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(hiddenElementId).value = (document.getElementById(elementId).value / currencies.quotes.USDGBP).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 case 'currency-preference-USDSEK':
-                    document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDSEK).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(hiddenElementId).value = (document.getElementById(elementId).value / currencies.quotes.USDSEK).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 case 'currency-preference-USDNOK':
-                    document.getElementById(hiddenElementId).innerHTML = (document.getElementById(elementId).value / currencies.quotes.USDNOK).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(hiddenElementId).value = (document.getElementById(elementId).value / currencies.quotes.USDNOK).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
                 default:
-                    document.getElementById(hiddenElementId).innerText = (document.getElementById(elementId).value).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById(hiddenElementId).value = (document.getElementById(elementId).value).toLocaleString("de-DE", {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     break;
             }
         }
@@ -84,8 +86,8 @@ function currency_convert_inverse() {
 
 function get_currency($currency_preference) {
 
-    const elementId = 'annual_salary';
-    const hiddenElementId = 'annual_salary_hidden';
+    const elementId = 'annual-salary';
+    const hiddenElementId = 'annual-salary-hidden';
 
     let request;
 

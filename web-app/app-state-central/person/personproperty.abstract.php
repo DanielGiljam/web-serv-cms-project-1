@@ -35,3 +35,4 @@ include 'personproperties/zipcode.class.php';
 include 'personproperties/aboutyou.class.php';
 include 'personproperties/annualsalary.class.php';
 include 'personproperties/datingpreference.class.php';
+include 'personproperties/preferences.class.php';

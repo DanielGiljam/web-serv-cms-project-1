@@ -44,26 +44,11 @@ function processRegSub()
     }
 }
 
-function dpIntToString($dp_int)
+function logFailedLogInAttempt()
 {
-    switch ($dp_int) {
-        case 2:
-            return 'Male';
-        case 3:
-            return 'Female';
-        case 4:
-            return 'Other';
-        case 5:
-            return 'Male & Female';
-        case 6:
-            return 'Male & Other';
-        case 7:
-            return 'Female & Other';
-        case 9:
-            return 'Male, Female & Other';
-        default:
-            return 'None';
-    }
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $event = '{ "failedloginattempt": { "email":"' . $_POST['email'] . '", "password":"' . $password . '" } }';
+    logAnomalityEvent($_SERVER['REMOTE_ADDR'], $event);
 }
 
 // See "all-in-one-seo-pack.example.html" in the miscellaneous folder for help on this one

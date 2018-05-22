@@ -30,14 +30,14 @@ if (isset($page_specific_properties['no_such_user']) && $page_specific_propertie
 <p>More information about the person:</p>
 <ul>
     <li>Email: <?php echo $page_specific_properties['person']->get('email')->value() ?></li>
-    <li id="zip_code">ZIP code: <?php echo $page_specific_properties['person']->get('zip_code')->value() ?></li>
+    <li id="zip-code">ZIP code: <?php echo $page_specific_properties['person']->get('zip_code')->value() ?></li>
     <li>About you: <?php echo $page_specific_properties['person']->get('about_you')->value() ?></li>
-    <li id="annual_salary_hidden" style="display: none"><?php echo $page_specific_properties['person']->get('annual_salary')->value() ?></li>
-    <li id="annual_salary">Annual salary: <button onclick="get_currency('<?php echo $page_specific_properties['person']->get('currency_preference') ?>')">Show salary</button></li>
-    <li id>Dating preference: <?php echo dpIntToString($page_specific_properties['person']->get('dating_preference')->value()) ?></li>
+    <li id="annual-salary-hidden" style="display: none"><?php echo $page_specific_properties['person']->get('annual_salary')->value() ?></li>
+    <li id="annual-salary">Annual salary: <button onclick="get_currency('<?php echo $page_specific_properties['person']->get('preferences')['currency_preference'] ?>')">Show salary</button></li>
+    <li id>Dating preference: <?php echo $page_specific_properties['person']->get('dating_preference')->value() ?></li>
 </ul>
 
-<button id="poi_button" onclick="poi_map()">Suggest date locations</button>
+<button id="poi-button" onclick="poi_map()">Suggest date locations</button>
 <div id="map" style="width: 360px; height: 360px;"></div>
 
 <?php

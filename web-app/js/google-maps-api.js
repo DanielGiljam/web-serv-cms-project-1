@@ -1,9 +1,9 @@
 let geocoder;
 let map;
 
-function initMap() {
+function init_map() {
     geocoder = new google.maps.Geocoder();
-    const address = document.getElementById('zip_code').innerText.slice(-5) + " ,Finland";
+    const address = document.getElementById('zip-code').innerText.slice(-5) + ", Finland";
     geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
             map.setCenter(results[0].geometry.location);

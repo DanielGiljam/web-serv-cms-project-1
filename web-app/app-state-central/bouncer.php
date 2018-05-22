@@ -42,8 +42,9 @@ function loginClient()
         $id = Person::getId(new Email($_POST['email']));
         if ($password_hash !== false && password_verify($_POST['password'], $password_hash)) {
             $_SESSION['id'] = createSession($id)['session_id'];
-            return false;
+            return true;
         } else {
+            logFailedLogInAttempt();
             return false;
         }
         // TODO: bouncer.php's loginClient() -function

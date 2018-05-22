@@ -2,7 +2,7 @@ let info_window;
 
 function poi_map() {
     let map_address;
-    const address = document.getElementById('zip_code').innerText.slice(-5) + " ,Finland";
+    const address = document.getElementById('zip-code').innerText.slice(-5) + ", Finland";
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': address}, function (results, status) {
         if (status === 'OK') {
@@ -28,12 +28,12 @@ function poi_map() {
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+            create_marker(results[i]);
         }
     }
 }
 
-function createMarker(place) {
+function create_marker(place) {
     const location = place.geometry.location;
     const marker = new google.maps.Marker({
         map: map,

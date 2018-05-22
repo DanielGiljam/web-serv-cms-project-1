@@ -6,6 +6,8 @@
 
 include 'personproperty.abstract.php';
 
+// TODO! Add gender -property!
+
 class Person {
 
     private $id;
@@ -16,6 +18,7 @@ class Person {
     private $about_you;
     private $annual_salary;
     private $dating_preference;
+    private $preferences;
 
     private function __CONSTRUCT($id)
     {
@@ -28,6 +31,7 @@ class Person {
         $this->about_you = new AboutYou($person_data['about_you']);
         $this->annual_salary = new AnnualSalary($person_data['annual_salary']);
         $this->dating_preference = new DatingPreference($person_data['dating_preference']);
+        $this->preferences = new Preferences($person_data['preferences']);
     }
 
     public static function createPerson(    $name,
@@ -36,10 +40,14 @@ class Person {
                                             $zip_code,
                                             $about_you,
                                             $annual_salary,
-                                            $dating_preference)
+                                            $dating_preference,
+                                            $preferences)
     {
         $id = 'UNIQUE_ID';
         $name_url_encoded = self::nameUrlEncoder($name);
+        $super_preferences = [];
+        $super_preferences['preferences'] = $preferences;
+        $preferences = json_encode($super_preferences);
         createPerson([  $id,
                         $name,
                         $name_url_encoded,
@@ -48,7 +56,8 @@ class Person {
                         $zip_code,
                         $about_you,
                         $annual_salary,
-                        $dating_preference]);
+                        $dating_preference,
+                        $preferences]);
     }
 
     public static function getPerson(PersonProperty $property)
@@ -163,11 +172,10 @@ class Person {
                 return $this->about_you;
             case 'annual_salary':
                 return $this->annual_salary;
-            case 'currency_preference':
-                // TODO: actually implement this (it's hardcoded for now)
-                return 1;
             case 'dating_preference':
                 return $this->dating_preference;
+            case 'preferences':
+                return $this->preferences;
             default:
                 return false;
         }
