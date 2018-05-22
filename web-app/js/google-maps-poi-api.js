@@ -23,6 +23,18 @@ function poi_map() {
 
         }
     });
+    map_address = new google.maps.LatLng({lat: 60.192059, lng: 24.945831});
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: map_address,
+        zoom: 15
+    });
+    info_window = new google.maps.InfoWindow();
+    const service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: map_address,
+        radius: 1000,
+        type: ['restaurant']
+    }, callback);
 }
 
 function callback(results, status) {
